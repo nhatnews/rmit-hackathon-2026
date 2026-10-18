@@ -1,0 +1,47 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Environments & Keys
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+kaggle.json
+.venv/
+venv/
+env/
+
+# Jupyter & IDE
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+.vscode/
+.idea/
+*.swp
+*~
+
+# Data (Keep directory structure with .gitkeep)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Submissions (Keep .gitkeep)
+submissions/*
+!submissions/.gitkeep
+
+# Models & Large Checkpoints
+models/*
+!models/.gitkeep
+*.pt
+*.pth
+*.bin
+*.onnx
+*.pkl
+*.joblib

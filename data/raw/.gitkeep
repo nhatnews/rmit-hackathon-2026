@@ -1,0 +1,2 @@
+# Place raw data files here (e.g. train.csv, test.csv, sample_submission.csv)
+# STRICT RULE: This folder is READ-ONLY. Do not overwrite or modify raw data!
