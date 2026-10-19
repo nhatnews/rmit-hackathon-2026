@@ -1,8 +1,4 @@
-# 🚀 RMIT Hackathon 2026 — Team Repository
-
-**Theme:** `Security x Generative AI x Low-Resource Languages`  
-**Repository:** `https://github.com/nhatnews/rmit-hackathon-2026.git`
-(PRIVATE)
+# 🚀 RMIT Hackathon 2026 - Security x Generative AI x Low-Resource Languages — Team Repository
 
 ## 🤖 Critical Instructions for AI Coding Agents
 
