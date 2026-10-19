@@ -63,15 +63,6 @@ Read this first before generating or modifying any code.
   - `10:00 – 13:30`: Check-in, Lễ trao giải liên cơ sở (Melbourne Theatre,
     Building 1) & Networking.
 
-### 🎒 Checklist vật dụng bắt buộc mang theo
-
-- [ ] **CCCD / Hộ chiếu hoặc Thẻ sinh viên** *(Không có giấy tờ tùy thân bảo
-      vệ sẽ không cho vào cổng RMIT)*.
-- [ ] Laptop + Sạc + Chuột.
-- [ ] **Ổ cắm điện nối dài (Extension cord)**.
-- [ ] **Bình nước cá nhân** *(RMIT có trạm refill nước, không phát chai
-      nhựa)*.
-
 ## 📂 2. Cấu trúc thư mục dự án
 
 ```text
