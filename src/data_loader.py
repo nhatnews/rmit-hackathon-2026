@@ -156,12 +156,18 @@ def extract_adversarial_features(
     feats = pd.DataFrame(index=df.index)
     series = df[text_col].fillna("").astype(str)
 
-    # 1. Length & Long-Prompt Anomaly Features (handles prompts up to 18k+ chars)
+    # 1. Length & Golden Boundary Features (discovered from 14,000-row EDA)
+    # - JAILBREAK strictly lies in [112, 3752] chars (0% below 112 or above 3752)
+    # - 100% of prompts above 5128 chars are BENIGN
     feats["char_len"] = series.apply(len)
     feats["log_char_len"] = np.log1p(feats["char_len"])
     feats["word_count"] = series.apply(lambda s: len(s.split()))
     feats["avg_word_len"] = feats["char_len"] / (feats["word_count"] + 1)
     feats["line_count"] = series.apply(lambda s: s.count("\n") + 1)
+    feats["is_len_lt_112"] = (feats["char_len"] < 112).astype(int)
+    feats["is_len_112_to_3752"] = ((feats["char_len"] >= 112) & (feats["char_len"] <= 3752)).astype(int)
+    feats["is_len_gt_3752"] = (feats["char_len"] > 3752).astype(int)
+    feats["is_len_gt_5128"] = (feats["char_len"] > 5128).astype(int)
     feats["is_long_prompt_1k"] = (feats["char_len"] > 1000).astype(int)
     feats["is_very_long_4k"] = (feats["char_len"] > 4000).astype(int)
 
