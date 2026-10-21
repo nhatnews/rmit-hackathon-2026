@@ -1,10 +1,12 @@
 """
 src/config.py
-Configuration, paths, constants, and environment secret handlers.
+Configuration, paths, constants, and environment secret handlers for
+RMIT Hackathon 2026 — Challenge 1: Multilingual Prompt-Attack Classification.
 """
 
 from pathlib import Path
 import os
+
 # Base Directory of the Project
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -51,6 +53,27 @@ for directory in [DATA_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, NOTEBOOKS_DIR, SUB
 
 # Random Seed for Reproducibility
 RANDOM_SEED = int(os.getenv("RANDOM_SEED", 42))
+
+# Official Competition Constants (Challenge 1: 3-Class Classification)
+ID_COL = "id"
+TEXT_COL = "text"
+LANG_COL = "language"
+TARGET_COL = "label"
+
+VALID_LABELS = ("BENIGN", "JAILBREAK", "PROMPT_INJECTION")
+LABEL2ID = {label: idx for idx, label in enumerate(VALID_LABELS)}
+ID2LABEL = {idx: label for idx, label in enumerate(VALID_LABELS)}
+
+SUPPORTED_LANGUAGES = ("en", "fr", "it", "pt")
+MAX_SUBMISSIONS = 6
+
+APPROVED_MODELS = (
+    "protectai/deberta-v3-base-prompt-injection-v2",
+    "FacebookAI/xlm-roberta-base",
+    "patronus-studio/wolf-defender-prompt-injection",
+    "distilbert-base-multilingual-cased",
+)
+
 
 def get_api_key(service_name: str) -> str:
     """
