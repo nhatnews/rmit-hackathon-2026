@@ -26,15 +26,9 @@ env/
 *.swp
 *~
 
-# Data (Keep directory structure with .gitkeep)
-data/raw/*
-!data/raw/.gitkeep
-data/processed/*
-!data/processed/.gitkeep
-
-# Submissions (Keep .gitkeep)
-submissions/*
-!submissions/.gitkeep
+# Data & Submissions are tracked so the whole team can pull directly (~11MB total)
+# Only ignore temporary zip archives inside data/
+data/**/*.zip
 
 # Models & Large Checkpoints
 models/*
