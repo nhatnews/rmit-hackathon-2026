@@ -7,14 +7,9 @@ scipy>=1.10.0
 
 # NLP & Text Processing
 regex>=2023.6.3
-nltk>=3.8.1
 
 # Environment & Utilities
 python-dotenv>=1.0.0
 kaggle>=1.5.16
 tqdm>=4.66.0
 tabulate>=0.9.0
-
-# LLM APIs (Optional Baseline / Augmentation)
-# google-genai
-# openai
