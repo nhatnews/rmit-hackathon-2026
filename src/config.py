@@ -68,11 +68,40 @@ SUPPORTED_LANGUAGES = ("en", "fr", "it", "pt")
 MAX_SUBMISSIONS = 6
 
 APPROVED_MODELS = (
-    "protectai/deberta-v3-base-prompt-injection-v2",
+    # Encoders (Fast & Multilingual)
+    "distilbert/distilbert-base-multilingual-cased",
+    "jhu-clsp/mmBERT-small",
+    "jhu-clsp/mmBERT-base",
     "FacebookAI/xlm-roberta-base",
+    "FacebookAI/xlm-roberta-large",
+    "google/rembert",
+    # Encoders (Safety-tuned for Prompt Injection)
+    "protectai/deberta-v3-base-prompt-injection-v2",
     "patronus-studio/wolf-defender-prompt-injection",
-    "distilbert-base-multilingual-cased",
+    # LLMs (LoRA / Fine-tuning)
+    "ibm-granite/granite-3.3-2b-instruct",
+    "mistralai/Mistral-7B-Instruct-v0.3",
 )
+
+APPROVED_KAGGLE_MODELS_URLS = {
+    "distilbert/distilbert-base-multilingual-cased": "https://www.kaggle.com/models/aisuko/distilbert-base-multilingual-cased/Transformers/default",
+    "jhu-clsp/mmBERT-small": "https://www.kaggle.com/models/aisuko/mmbert-small/Transformers/default",
+    "jhu-clsp/mmBERT-base": "https://www.kaggle.com/models/aisuko/mmbert-base/Transformers/default",
+    "FacebookAI/xlm-roberta-base": "https://www.kaggle.com/models/aisuko/xlm-roberta-base/Transformers/default",
+    "FacebookAI/xlm-roberta-large": "https://www.kaggle.com/models/aisuko/xlm-roberta-large/Transformers/default",
+    "google/rembert": "https://www.kaggle.com/models/aisuko/rembert/Transformers/default",
+    "protectai/deberta-v3-base-prompt-injection-v2": "https://www.kaggle.com/models/aisuko/deberta-v3-base-prompt-injection-v2/Transformers/default",
+    "patronus-studio/wolf-defender-prompt-injection": "https://www.kaggle.com/models/aisuko/wolf-defender-prompt-injection/Transformers/default",
+    "ibm-granite/granite-3.3-2b-instruct": "https://www.kaggle.com/models/aisuko/granite-3.3-2b-instruct/Transformers/default",
+    "mistralai/Mistral-7B-Instruct-v0.3": "https://www.kaggle.com/models/aisuko/mistral-7b-instruct-v0.3/Transformers/default",
+}
+
+
+def is_approved_model(model_name: str) -> bool:
+    """Verifies if a given model backbone is officially approved on Kaggle."""
+    name_clean = model_name.strip()
+    return any(name_clean == m or name_clean.endswith(m.split("/")[-1]) for m in APPROVED_MODELS)
+
 
 
 def get_api_key(service_name: str) -> str:
