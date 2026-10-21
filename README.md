@@ -2,7 +2,16 @@
 
 > **Saigon South Campus — Kaggle Competition**  
 > Metric: **Macro-averaged F1** | Target Languages: **pt (45%), fr (25%), it (20%), en (10%)**  
-> Submission Limit: **Tối đa 6 lần nộp cho toàn bộ cuộc thi**
+> Submission Limit: **Tối đa 6 lần nộp cho toàn bộ cuộc thi**  
+> ⚠️ **QUY TẮC CỐT LÕI (STRICT RULE): CHỈ ĐƯỢC XÂY DỰNG GIẢI PHÁP TRÊN ĐÚNG 1 MODEL DUY NHẤT (NO ENSEMBLING/BLENDING)**
+
+---
+
+> 🚨 **QUY ĐỊNH BẮT BUỘC TỪ BAN TỔ CHỨC:**  
+> *"You must build your solution on one of the following approved models. They are all open-source-licence safe and provided to you as a Kaggle dataset — no other pretrained backbone is allowed."*  
+> - **Chỉ được dùng duy nhất 1 model:** Mọi submission và notebook nộp bài phải xây dựng trên đúng **1 pretrained backbone** được duyệt.
+> - **Tuyệt đối cấm Ensemble đa model:** Không được kết hợp (blend/stack/ensemble) nhiều mô hình khác nhau (ví dụ: cấm blend DeBERTa + XLM-RoBERTa). Điểm số từ giải pháp kết hợp nhiều backbone sẽ phạm quy.
+> - **Khai báo model:** Ghi rõ tên model ở dòng đầu tiên của notebook Kaggle (ví dụ: `# Model: protectai/deberta-v3-base-prompt-injection-v2`).
 
 ---
 
@@ -21,9 +30,9 @@
 
 ---
 
-## 🛡️ Danh sách 10 Approved Models của BTC (Whitelist)
+## 🛡️ Danh sách 10 Approved Models của BTC (Whitelist) & Ràng Buộc "Chỉ 1 Model"
 
-Theo quy chế BTC, **bắt buộc chỉ được sử dụng 1 trong 10 mô hình pretrained sau từ Kaggle Models** (ghi rõ tên model ở dòng đầu notebook):
+Tất cả 10 mô hình đều an toàn về bản quyền mã nguồn mở và được cung cấp sẵn dưới dạng Kaggle dataset. **Không được sử dụng bất kỳ pretrained backbone nào khác ngoài danh sách.**
 
 ### 1. Nhóm Chuyên An Toàn Bảo Mật (Ưu tiên số 1 cho Prompt Injection)
 - [`protectai/deberta-v3-base-prompt-injection-v2`](https://www.kaggle.com/models/aisuko/deberta-v3-base-prompt-injection-v2/Transformers/default) — Đã pre-train chuyên biệt cho Prompt Injection & Jailbreak.
@@ -45,14 +54,15 @@ Theo quy chế BTC, **bắt buộc chỉ được sử dụng 1 trong 10 mô hì
 
 ---
 
-## 🎯 Chiến Lược Tác Chiến: "Song Song 4 Mô Hình — Chung 1 Thước Đo"
+## 🎯 Chiến Lược Tác Chiến: "Khám Phá Song Song — Chọn 1 Model Tối Thượng"
 
-1. **Thử nghiệm song song (Parallel Exploration):**
+1. **Thử nghiệm song song (Parallel Single-Model Exploration):**
    - Các thành viên có thể độc lập chọn 1 mô hình trong danh sách Whitelist để huấn luyện trên Kaggle GPU.
    - Sử dụng chung file mẫu chuẩn hóa: [`notebooks/template_train_approved_model.ipynb`](file:///d:/Code/rmit-hackathon-2026/notebooks/template_train_approved_model.ipynb), chỉ cần thay đổi biến `MODEL_NAME`.
-2. **Chung 1 thước đo (Unified Benchmark):**
-   - Mọi mô hình đều đo điểm trên bộ 5-Fold chung tại [`data/processed/folds.csv`](file:///d:/Code/rmit-hackathon-2026/data/processed/folds.csv).
-   - Đánh giá bằng **Macro-F1** (không dùng loss hay accuracy).
+2. **Chọn ra 1 MODEL TỐT NHẤT (Single Champion Model):**
+   - Mọi mô hình đều đo điểm trên bộ 5-Fold chung tại [`data/processed/folds.csv`](file:///d:/Code/rmit-hackathon-2026/data/processed/folds.csv) theo **Macro-F1**.
+   - Cả đội chọn mô hình có Macro-F1 cao nhất và tối ưu hóa sâu mô hình đó (hyperparameters, head+tail truncation, class weights, post-processing multipliers).
+   - **Tuyệt đối không ensemble các mô hình khác nhau.**
 3. **Kỷ luật nộp bài (Quota Gatekeeper):**
    - Cả giải **chỉ có 6 lượt nộp**.
    - Mọi lượt nộp do **Nhật Tân** kiểm tra và duyệt bằng `validate_submission()`.
@@ -93,6 +103,8 @@ validate_submission(sub_df)
 # Kiểm tra phân bố nhãn (chuẩn: Benign ~60%, Jailbreak ~30%, Injection ~6-9%)
 print(sub_df['label'].value_counts(normalize=True) * 100)
 ```
+- [ ] Xây dựng giải pháp trên **đúng 1 model duy nhất** thuộc whitelist (không ensemble đa backbone).
+- [ ] Khai báo `# Model: <tên_model>` ở dòng đầu tiên của notebook.
 - [ ] File đủ **đúng 6.000 dòng**, 2 cột: `id` và `label`.
 - [ ] Không chứa `NaN`, `null`, giá trị rỗng, hoặc mã số `0, 1, 2`.
 - [ ] Lớp `PROMPT_INJECTION` đạt tỷ lệ từ **5% đến 10%** (nếu dưới 3% là mô hình bị lỗi, không được nộp).

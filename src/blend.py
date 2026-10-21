@@ -1,10 +1,16 @@
 """
 src/blend.py
-Blending and post-processing helpers for 3-Class Probability Matrices (N x 3)
+Post-processing and K-Fold blending helpers for 3-Class Probability Matrices (N x 3)
 in RMIT Hackathon 2026 — Challenge 1: Multilingual Prompt-Attack Classification.
 
+CRITICAL COMPETITION RULE:
+- BTC mandates building the solution on strictly ONE approved model.
+- Multi-model ensembling / blending across different backbones (e.g. DeBERTa + XLM-R) is PROHIBITED.
+- Blending functions here are intended for averaging 5-Fold checkpoints of the SAME single backbone,
+  or post-processing class probability multipliers (m_0, m_1, m_2) to optimize Macro-F1.
+
 Key capabilities:
-1. Blending 3-class probability matrices (N x 3) across multiple models via
+1. Averaging 3-class probability matrices (N x 3) across folds of the same model via
    weighted mean ("mean"), log-odds/softmax ("logit"), or per-class rank ("rank").
 2. Optimizing class probability multipliers (m_0, m_1, m_2) globally or per-language
    (`pt, fr, it, en`) on Out-Of-Fold (OOF) predictions to maximize Macro-averaged F1.
