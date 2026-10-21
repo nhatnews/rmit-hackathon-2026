@@ -1,145 +1,113 @@
-# 🎯 BẢNG PHÂN CÔNG NHIỆM VỤ & CHIẾN THUẬT — RMIT HACKATHON 2026 (CHALLENGE 1)
-
-> [!IMPORTANT]
-> **CHIẾN THUẬT ĐÃ CHỐT: THUẦN 1 MODEL TRÊN KAGGLE (END-TO-END REPRODUCIBILITY)**
-> - Nhóm tập trung dồn toàn lực tối ưu cho **DUY NHẤT 1 mô hình nòng cốt** được BTC cấp phép: **`protectai/deberta-v3-base-prompt-injection-v2`** (chuyên gia bảo mật đã pretrain sẵn cho bài toán Prompt Injection).
-> - Toàn bộ quy trình từ tiền xử lý, huấn luyện 5-Fold, tối ưu ngưỡng Macro-F1 đến xuất file `submission.csv` chạy khép kín trong **Kaggle Notebook chính thức**, đảm bảo **100% đúng luật** (*"You must build your solution on one of the approved models"*) và **100% tái lập được (Reproducible)** khi giám khảo bấm "Run All".
-> - Mô hình Baseline TF-IDF (OOF Macro-F1 = `0.9316`) đóng vai trò mốc an toàn (Safety Net) và kiểm chứng pipeline.
+# 🎯 KẾ HOẠCH TÁC CHIẾN & PHÂN CÔNG NHIỆM VỤ — RMIT HACKATHON 2026
+> **Challenge 1: Multilingual Prompt-Attack Classification**
 
 ---
 
-## 📊 1. Hiện Trạng & Tiến Trình Dự Án
+# 🟢 PHẦN 1: TÓM TẮT NHANH CHO CẢ ĐỘI
 
-| Thành phần | Trạng thái | Đường dẫn file trong Repo | Ghi chú quan trọng |
-| :--- | :---: | :--- | :--- |
-| **Dữ liệu gốc (`train`, `test`)** | ✅ Sẵn sàng | `data/raw/train.csv` (14,000 dòng)<br>`data/raw/test.csv` (6,000 dòng) | Chỉ đọc (`READ-ONLY`), không có giá trị `NaN`. |
-| **Bộ chia 5-Fold dùng chung** | ✅ Đã khóa | `data/processed/folds.csv` | **Cả 4 thành viên dùng chung 100%** qua `load_folds(train_df)`. |
-| **Baseline Mẫu (TF-IDF + Linear)** | ✅ Đã chạy | `submissions/baseline_tfidf_blend.csv`<br>`data/processed/oof_tfidf_svc.npy` | **OOF Macro-F1 = `0.9316`** (Dùng làm mốc tham chiếu nội bộ & Lượt nộp kiểm tra kết nối #1). |
-| **Official Kaggle Notebook** | 🚀 Đang triển khai | `RMIT_SGS_<team>_C1` trên Kaggle GPU | Chạy thuần `deberta-v3`, xuất trực tiếp `submission.csv`. |
-
----
-
-## 💎 2. Phát Hiện "Mỏ Vàng" Từ Dữ Liệu Thật — Cả Team Cần Nắm Vững
-
-1. **Phân bố Ngôn ngữ (`language`) & Nhãn (`label`) khớp 100% giữa Train và Test:**
-   - **Ngôn ngữ:** Tiếng Bồ Đào Nha `pt` (**45%**), Tiếng Pháp `fr` (**25%**), Tiếng Ý `it` (**20%**), Tiếng Anh `en` (**10%**).
-   - **Tỷ lệ 3 lớp:**
-     - `BENIGN`: **62.0%** (`8,680` mẫu train)
-     - `JAILBREAK`: **31.0%** (`4,340` mẫu train)
-     - `PROMPT_INJECTION`: **7.0%** (`980` mẫu train — **chiếm trọn 1/3 tổng điểm Macro-F1!**)
-2. **Quy luật Độ dài Văn bản (`char_len`) cực kỳ đắt giá:**
-   - **`JAILBREAK`:** Độ dài nằm gọn trong khoảng **`[112, 3752]` ký tự** (trung vị `565` ký tự). **Không có bất kỳ mẫu `JAILBREAK` nào dưới 112 ký tự hoặc trên 3,752 ký tự!**
-   - **`PROMPT_INJECTION`:** Ngắn gọn, trung vị chỉ **`99` ký tự** (75% mẫu dưới `263` ký tự).
-   - **`BENIGN`:** Trải dài từ `10` đến **`18,550` ký tự** (100% mẫu dài trên `5,128` ký tự là `BENIGN`).
-3. **Điểm nghẽn lỗi sai thực tế:**
-   - **80% tổng số lỗi** là nhầm lẫn giữa **`BENIGN` $\leftrightarrow$ `JAILBREAK` trong tiếng Bồ Đào Nha (`pt`)**.
-   - **18% tổng số lỗi** là nhầm lẫn giữa **`BENIGN` $\leftrightarrow$ `PROMPT_INJECTION` trong `en, it, fr`**.
+### 📌 Đề bài thực tế:
+* **Dữ liệu vào:** 14.000 câu văn bản (`train.csv`) gồm 4 thứ tiếng: Bồ Đào Nha (`pt` - 45%), Pháp (`fr` - 25%), Ý (`it` - 20%), Anh (`en` - 10%).
+* **Nhiệm vụ:** Chọn 1 mô hình BTC cho phép $\rightarrow$ Train mô hình $\rightarrow$ Đoán 3 nhãn cho 6.000 câu test (`test.csv`):
+  * `BENIGN` (62%): An toàn.
+  * `JAILBREAK` (31%): Đóng vai lừa AI vượt rào.
+  * `PROMPT_INJECTION` (7% - **lớp quyết định điểm số**): Chiếm quyền điều khiển hệ thống.
+* **Chấm điểm:** **Macro-F1** (3 nhãn quan trọng ngang nhau, nhãn 7% tính điểm bằng nhãn 62%).
+* **Ràng buộc:** Toàn bộ cuộc thi chỉ được **nộp tối đa 6 lần**.
 
 ---
 
-## 👥 3. Phân Công Nhiệm Vụ Chi Tiết (Single-Model Kaggle Focus)
+### 🗺️ Luồng 4 bước tác chiến của 4 thành viên
 
-```mermaid
-flowchart LR
-    A["🛡️ CƯỜNG THỊNH<br>Text Engineering,<br>Tiền tố lang &<br>Quy luật độ dài"] --> B["🔥 TRUNG QUÂN<br>Kaggle GPU Notebook,<br>Fine-tune DeBERTa-v3,<br>Head+Tail 512 tokens"]
-    B --> C["⚡ KHÁNH LINH<br>Class-Weighted Loss,<br>Hyperparameters tuning,<br>5-Fold Validation"]
-    C --> D["👑 NHẬT TÂN (Lead)<br>Tối ưu ngưỡng Macro-F1,<br>Error Analysis & Quản lý 6 lượt nộp"]
+```
+[Bước 1: Làm sạch Text] ──> [Bước 2: Chạy Train GPU] ──> [Bước 3: Chỉnh Phạt & Đánh Giá] ──> [Bước 4: Nộp Bài]
+    (CƯỜNG THỊNH)                (TRUNG QUÂN)                   (KHÁNH LINH)                  (NHẬT TÂN)
 ```
 
----
-
-### 👑 1. Nhật Tân — Team Lead, Kaggle Pipeline & Quota Master
-**Trách nhiệm chính:** Quản trị chiến lược, điều phối notebook chính thức, tối ưu hóa ngưỡng Macro-F1 và bảo vệ quota 6 lần nộp.
-
-- [ ] **Task 1 (Quản lý Quota 6 lần nộp):** 
-  - Sử dụng **Lần nộp #1** bằng file [`submissions/baseline_tfidf_blend.csv`](file:///d:/Code/rmit-hackathon-2026/submissions/baseline_tfidf_blend.csv) (OOF = `0.9316`) để thông chốt pipeline và lấy điểm mốc ban đầu trên Leaderboard.
-  - **Giữ chặt 5 lượt nộp còn lại** cho các phiên bản DeBERTa-v3 nâng cấp.
-- [ ] **Task 2 (Tích hợp Tối ưu Ngưỡng Macro-F1 vào Notebook):**
-  - Đóng gói logic `optimize_class_multipliers()` từ `src/blend.py` thành 1 cell hàm gọn nhẹ ở cuối Kaggle Notebook của Quân.
-  - Sau khi DeBERTa xuất xác suất `(N_test, 3)`, tự động nhân hệ số $(m_0, m_1, m_2)$ để ép tăng độ nhạy cho lớp 7% `PROMPT_INJECTION` trước khi dịch ra nhãn chữ `BENIGN, JAILBREAK, PROMPT_INJECTION`.
-- [ ] **Task 3 (Phân tích lỗi OOF & Điều phối cải tiến):**
-  - Xem xét các mẫu DeBERTa đoán sai trên 5-Fold, phân loại theo ngôn ngữ (`pt` vs `en, fr, it`) và chỉ đạo Cường Thịnh nắn lại text đầu vào.
-- [ ] **Task 4 (Kiểm duyệt & Nộp bài):**
-  - Chạy `validate_submission()` kiểm tra file output của Notebook (đúng 6,000 dòng, cột `id, label`, không có `NaN`) rồi trực tiếp bấm Submit trên Kaggle.
+| Thành viên | Vai trò phụ trách | Việc chính cần làm | Sản phẩm đầu ra |
+| :--- | :--- | :--- | :--- |
+| **1. CƯỜNG THỊNH** | **Dữ liệu & Chữ nghĩa** | - Giữ nguyên dấu tiếng Pháp/Bồ Đào Nha/Ý, không xóa bừa.<br>- Ghép tiền tố: `lang: <tiếng> \| <nội dung câu>`.<br>- Cắt câu dài (giữ đoạn đầu + đoạn cuối). | Hàm xử lý text nạp thẳng vào notebook. |
+| **2. TRUNG QUÂN** | **Kaggle GPU & Model** | - Mở Kaggle Notebook GPU (T4 x2), đặt tên chuẩn `RMIT_SGS_<team>_C1`.<br>- Tải model: `protectai/deberta-v3-base-prompt-injection-v2`.<br>- Bấm chạy train và cho đoán tập test. | Notebook chạy mượt mà, xuất ra `submission.csv`. |
+| **3. KHÁNH LINH** | **Chỉnh phạt & Đánh giá** | - Cài công thức phạt nặng nếu đoán sai nhãn 7% (phạt x8 lần).<br>- Chỉnh tốc độ học và số vòng (3-4 epochs) để model không học vẹt.<br>- Canh điểm Macro-F1 trên 5 phần dữ liệu chia nhỏ. | Bộ tham số tối ưu + Checkpoint thông minh nhất. |
+| **4. NHẬT TÂN** | **Tối ưu cuối & Nộp bài** | - Giữ chìa khóa 6 lượt nộp (duyệt file bằng `validate_submission`).<br>- Tối ưu ngưỡng xác suất phút chót để kích thêm điểm Macro-F1.<br>- Trực tiếp submit lên bảng xếp hạng Kaggle. | 6 lượt nộp chuẩn xác, tối đa hóa thứ hạng. |
 
 ---
 
-### 🔥 2. Trung Quân — Kaggle GPU & Model Training Lead
-**Trách nhiệm chính:** Xây dựng và vận hành Kaggle Notebook chính thức, biến DeBERTa-v3 thành vũ khí ghi điểm cao nhất.
+# 🔵 PHẦN 2: HÀNG RÀO KỸ THUẬT CHO AI AGENT (GEMINI / ANTIGRAVITY)
+> *Các thành viên copy phần này vào prompt cho AI của mình để AI không đi lạc và không vi phạm quy chế thi.*
 
-- [ ] **Task 1 (Khởi tạo Notebook chuẩn BTC):**
-  - Tạo Notebook trên Kaggle GPU (T4 x2), đặt tên đúng chuẩn quy định: `RMIT_SGS_<team>_C1`.
-  - Khai báo model ở dòng đầu tiên của Notebook: `# Model: protectai/deberta-v3-base-prompt-injection-v2`.
-  - Import tập dữ liệu cuộc thi và upload `data/processed/folds.csv` để giữ đúng 5-Fold của nhóm.
-- [ ] **Task 2 (Cài đặt Pipeline DeBERTa-v3 với AutoModelForSequenceClassification):**
-  - Cấu hình mô hình `num_labels=3`, ánh xạ nhãn: `0: BENIGN, 1: JAILBREAK, 2: PROMPT_INJECTION`.
-  - Bật FP16 (Mixed Precision) để tiết kiệm VRAM và tăng tốc độ train x2 lần.
-- [ ] **Task 3 (Kỹ thuật Head + Tail Token Truncation):**
-  - Vì prompt dài tới 18,550 ký tự trong khi transformer nhận tối đa 512 tokens: Cắt lấy **256 token đầu + 256 token cuối** (không cắt cụt đuôi vì lệnh tấn công thường ẩn ở cuối câu).
-- [ ] **Task 4 (Inference & Xuất submission.csv khép kín):**
-  - Dự đoán trên `test.csv` (6,000 dòng), áp dụng hàm tối ưu ngưỡng của Nhật Tân và lưu thẳng ra file `/kaggle/working/submission.csv`.
-  - Đảm bảo khi bấm **"Run All" / "Save & Run All (Commit)"**, notebook chạy mượt mà từ đầu đến cuối không lỗi.
+### 🚨 4 Ràng buộc kỹ thuật bất di bất dịch (Zero Exceptions)
+1. **Chỉ dùng 1 model nòng cốt trong Whitelist BTC:** Dồn 100% sức cho **`protectai/deberta-v3-base-prompt-injection-v2`**. Dòng đầu tiên của Kaggle Notebook phải ghi rõ:
+   ```python
+   # Model: protectai/deberta-v3-base-prompt-injection-v2
+   ```
+2. **Tuyệt đối không xóa dấu Unicode và ký tự tấn công:** Tuyệt đối không dùng `re.sub(r'[^a-zA-Z0-9]', ' ', text)`. Phải giữ nguyên dấu Romance (`é, è, ê, ç, ã, õ, á, í...`) và ký tự markdown (` ``` `, `<|...|>`). Luôn dùng hàm [`clean_text_safety()`](file:///d:/Code/rmit-hackathon-2026/src/data_loader.py).
+3. **Cả 4 người dùng chung 1 bộ chia Fold:** Mọi đánh giá CV phải đọc từ [`data/processed/folds.csv`](file:///d:/Code/rmit-hackathon-2026/data/processed/folds.csv) (`load_folds(train_df)`), cấm tự ý chia fold bằng seed ngẫu nhiên khác.
+4. **Bảo vệ Quota 6 lần nộp:** File nộp phải đủ **đúng 6.000 dòng**, 2 cột `id, label` (giá trị chuỗi `BENIGN`, `JAILBREAK`, `PROMPT_INJECTION`), không được chứa số `0, 1, 2` hay `NaN`. Luôn kiểm tra bằng [`validate_submission()`](file:///d:/Code/rmit-hackathon-2026/src/utils.py).
 
 ---
 
-### 🛡️ 3. Cường Thịnh — Prompt Formatting & Text Engineering Specialist
-**Trách nhiệm chính:** Chuẩn bị định dạng text đầu vào tối ưu nhất cho DeBERTa đọc hiểu, giải quyết triệt để 80% lỗi ở tiếng Bồ Đào Nha.
+### 📋 Nhiệm vụ kỹ thuật chi tiết của từng thành viên
 
-- [ ] **Task 1 (Format Tiền tố Ngôn ngữ):**
-  - Thiết kế hàm format text đầu vào cho Transformer: `f"lang: {language} | {clean_text}"`.
-  - Đảm bảo Transformer nhận biết tức thì văn cảnh ngôn ngữ để phân biệt ngữ nghĩa đặc thù.
-- [ ] **Task 2 (Giải quyết điểm nghẽn 80% lỗi ở Tiếng Bồ Đào Nha `pt`):**
-  - Phân tích sự khác biệt giữa *Contrastive Benign* (mượn vỏ bọc nhập vai giả định nhưng hỏi việc an toàn) và *Subtle Jailbreak* (giả bộ nghiên cứu lịch sử để hỏi cách chế vũ khí/mã độc).
-  - Tích hợp các chỉ báo ngữ cảnh vào text để mô hình chú ý vào "nội dung yêu cầu cốt lõi" thay vì bị đánh lừa bởi vỏ bọc nhập vai.
-- [ ] **Task 3 (Đặc trưng Ngưỡng Độ Dài Vàng):**
-  - Khai thác quy luật độ dài:
-    - Nếu `char_len < 112` hoặc `char_len > 3752` $\rightarrow$ Thêm tín hiệu loại trừ nhãn `JAILBREAK`.
-    - Nếu `char_len > 5128` $\rightarrow$ Thêm tín hiệu chỉ báo 100% là `BENIGN`.
-- [ ] **Task 4 (Đảm bảo an toàn ký tự Unicode):**
-  - Đồng bộ hàm `clean_text_safety()` vào notebook của Quân, tuyệt đối không dùng regex làm mất dấu diacritics tiếng Romance (`é, è, ê, ç, ã, õ, á, í...`) hay mất delimiter Markdown/XML (` ``` `, `<|...|>`).
+#### 1. Cường Thịnh — Prompt Formatting & Text Engineering
+* **Ghép tiền tố ngôn ngữ:** Định dạng đầu vào transformer:
+  ```python
+  formatted_text = f"lang: {language} | {clean_text_safety(text)}"
+  ```
+* **Xử lý văn bản siêu dài (Head + Tail Truncation):** Văn bản dài tới 18.550 ký tự trong khi DeBERTa chỉ nhận 512 tokens. Cắt lấy **256 token đầu + 256 token cuối** (lệnh tấn công thường giấu ở cuối văn bản).
+* **Quy luật độ dài vàng (Golden Length Rules):**
+  * `char_len < 112` hoặc `char_len > 3752` $\rightarrow$ Chắc chắn **0% là `JAILBREAK`**.
+  * `char_len > 5128` $\rightarrow$ **100% là `BENIGN`**.
+* **Giải quyết 80% lỗi ở Tiếng Bồ Đào Nha (`pt` - 45% data):** Phân biệt giữa *Contrastive Benign* (đóng vai giả định nhưng hỏi việc an toàn) và *Subtle Jailbreak* (giả danh khoa học/lịch sử để hỏi việc độc hại).
 
----
+#### 2. Trung Quân — Kaggle GPU & Model Training Lead
+* **Khởi tạo Notebook chuẩn BTC:**
+  * Bật GPU Kaggle (T4 x2), đặt tên notebook: `<university>_<campus>_<team>_C1` (VD: `RMIT_SGS_<team>_C1`).
+  * Khai báo model ở dòng 1: `# Model: protectai/deberta-v3-base-prompt-injection-v2`.
+  * Giữ notebook ở chế độ **Private** trong suốt thời gian thi đấu.
+* **Pipeline Huấn luyện với Hugging Face:**
+  * Sử dụng `AutoModelForSequenceClassification.from_pretrained("protectai/deberta-v3-base-prompt-injection-v2", num_labels=3)`.
+  * Ánh xạ nhãn: `0: BENIGN, 1: JAILBREAK, 2: PROMPT_INJECTION`.
+  * Bật mixed precision (`fp16=True`) để tiết kiệm bộ nhớ GPU và tăng tốc train gấp đôi.
+* **Đảm bảo tính tái lập (End-to-End Reproducibility):**
+  * Đảm bảo notebook có thể bấm **"Save & Run All (Commit)"** và tự động xuất ra file `/kaggle/working/submission.csv` mà không bị gián đoạn.
 
-### ⚡ 4. Khánh Linh — Hyperparameters, Loss Tuning & Validation Specialist
-**Trách nhiệm chính:** Cấu hình hàm mất mát, tối ưu siêu tham số và kiểm soát độ hội tụ của DeBERTa trên 5-Fold.
-
-- [ ] **Task 1 (Cấu hình Class-Weighted Loss / Focal Loss giải bài toán 62-31-7):**
-  - Thiết lập trọng số phạt trong hàm mất mát PyTorch để trừng phạt nặng khi đoán sai lớp `PROMPT_INJECTION` (7%):
+#### 3. Khánh Linh — Hyperparameters, Loss Tuning & Validation Specialist
+* **Xử lý mất cân bằng lớp 62% - 31% - 7% (Class-Weighted Loss):**
+  * Áp dụng trọng số phạt trong PyTorch để phạt nặng khi đoán sai lớp thiểu số `PROMPT_INJECTION`:
     ```python
     weights = torch.tensor([1.0, 2.0, 8.8]).to(device)
     criterion = torch.nn.CrossEntropyLoss(weight=weights)
     ```
-- [ ] **Task 2 (Tinh chỉnh Siêu tham số Huấn luyện - Hyperparameters):**
-  - Learning Rate: Khởi đầu ở `1.5e-5` – `2e-5` với `get_cosine_schedule_with_warmup` (warmup 10% số bước).
-  - Batch size: `16` (hoặc `8` kèm `gradient_accumulation_steps=2` để đạt batch size hiệu dụng `16-32`).
-  - Epochs: `3` – `4` epochs mỗi fold (DeBERTa pretrained hội tụ rất nhanh, tránh train quá nhiều gây overfit).
-  - Weight decay: `0.01`, Dropout: `0.1`.
-- [ ] **Task 3 (Đánh giá Validation & Chọn Checkpoint tối ưu):**
-  - Theo dõi **OOF Macro-F1** qua từng epoch trên 5-Fold chung `folds.csv`.
-  - Lưu checkpoint có điểm Macro-F1 cao nhất để đưa vào bước dự đoán cuối cùng, đảm bảo mô hình tổng quát hóa tốt nhất trên tập Test.
-- [ ] **Task 4 (Kế hoạch dự phòng Backbone thứ 2):**
-  - Chuẩn bị sẵn cấu hình cho model dự phòng `FacebookAI/xlm-roberta-base` phòng trường hợp cần đối chứng điểm số với DeBERTa.
+* **Dò siêu tham số tối ưu (Hyperparameters):**
+  * Learning rate: `1.5e-5` – `2e-5` kết hợp Cosine scheduler warmup 10%.
+  * Batch size hiệu dụng: `16` – `32` (dùng `gradient_accumulation_steps=2` nếu batch size thực là 8).
+  * Số epochs: `3` – `4` epochs (hạn chế train nhiều gây overfit). Weight decay: `0.01`.
+* **Quản trị 5-Fold Validation:**
+  * Theo dõi điểm **OOF Macro-F1** qua từng epoch trên đúng file `folds.csv`.
+  * Luôn chọn checkpoint có điểm **Macro-F1** cao nhất (không chọn theo validation loss).
+
+#### 4. Nhật Tân — Team Lead, Kaggle Pipeline & Quota Master
+* **Quản trị nghiêm ngặt Quota 6 lần nộp:**
+  * Lần #1 nộp ngay file [`submissions/baseline_tfidf_blend.csv`](file:///d:/Code/rmit-hackathon-2026/submissions/baseline_tfidf_blend.csv) (OOF = `0.9316`) để lấy điểm mốc và kiểm tra hệ thống.
+  * Giữ chặt 5 lần nộp còn lại cho các cải tiến của DeBERTa-v3.
+* **Tối ưu ngưỡng xác suất phút chót (Macro-F1 Threshold Tuning):**
+  * Tích hợp hàm nhân hệ số xác suất $(m_0, m_1, m_2)$ từ [`src/blend.py`](file:///d:/Code/rmit-hackathon-2026/src/blend.py) vào cell cuối của notebook:
+    ```python
+    # Tăng độ nhạy cho lớp 7% PROMPT_INJECTION
+    probs_adjusted = probs * np.array([m_benign, m_jailbreak, m_injection])
+    preds = np.argmax(probs_adjusted, axis=1)
+    ```
+* **Kiểm duyệt bài nộp:** Chạy [`validate_submission()`](file:///d:/Code/rmit-hackathon-2026/src/utils.py) kiểm tra file xuất ra trước khi bấm nộp trên Kaggle.
 
 ---
 
-## 📅 4. Kế Hoạch 6 Lần Nộp Bài (Kaggle Quota Distribution)
+# 📅 PHẦN 3: PHÂN BỔ 6 LƯỢT NỘP BÀI (KAGGLE SUBMISSION QUOTA)
 
-| Lần nộp | Thời điểm dự kiến | Nội dung bài nộp | Mục tiêu điểm Macro-F1 | Người phụ trách duyệt |
+| Lượt nộp | Thời điểm dự kiến | Nội dung bài nộp | Mục tiêu Macro-F1 | Người phụ trách duyệt |
 | :---: | :---: | :--- | :---: | :---: |
-| **#1** | Đầu buổi sáng | `baseline_tfidf_blend.csv` (Đã có sẵn) | **`0.9316`** (Xác nhận đường truyền) | Nhật Tân |
-| **#2** | Giữa buổi sáng | DeBERTa-v3 baseline đầu tiên trên Kaggle | **`0.9500+`** (Kiểm tra sức mạnh Deep Learning) | Nhật Tân / Trung Quân |
-| **#3** | Đầu buổi chiều | DeBERTa-v3 + Class Weights + Ghép `lang:` | **`0.9600+`** (Tối ưu lớp 7% & đa ngôn ngữ) | Cả nhóm |
-| **#4** | Giữa buổi chiều | DeBERTa-v3 + Head+Tail Truncation + Độ dài vàng | **`0.9650+`** (Xử lý prompt dài & ranh giới độ dài) | Cả nhóm |
-| **#5** | 4:30 PM | Phiên bản hoàn thiện nhất (Best Checkpoint + Threshold Tuning) | **`0.9700+`** (Chốt điểm số tranh giải) | Cả nhóm |
-| **#6** | 5:30 PM | **LƯỢT DỰ PHÒNG KHẨN CẤP** (Chỉ dùng khi có cải tiến phút chót) | Top 1 Leaderboard | Nhật Tân |
-
----
-
-## 🤝 5. Quy Chuẩn Nộp Bài Khép Kín (Checklist cuối cùng)
-
-Trước khi bấm nút Submit trên Kaggle hoặc nộp link cho BTC:
-1. [ ] Notebook trên Kaggle đặt tên đúng: `RMIT_SGS_<team>_C1`.
-2. [ ] Dòng đầu tiên trong Notebook ghi rõ: `# Model: protectai/deberta-v3-base-prompt-injection-v2`.
-3. [ ] Đã bấm **"Save & Run All (Commit)"** và chạy thành công từ đầu đến cuối ra file `submission.csv`.
-4. [ ] File `submission.csv` có đúng **6,000 dòng**, 2 cột `id, label`, nhãn chỉ thuộc `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}`.
-5. [ ] Để Notebook ở chế độ **Private** trong suốt thời gian thi, chỉ share quyền / lấy link khi đến giờ nộp bài chính thức (5:00 - 6:00 PM).
+| **#1** | Đầu buổi sáng (10:30) | `baseline_tfidf_blend.csv` (Có sẵn trong repo) | **`0.9316`** (Mở hàng + thông kết nối) | **Nhật Tân** |
+| **#2** | Giữa buổi sáng (11:30) | DeBERTa-v3 Fold đầu tiên trên Kaggle GPU | **`0.9500+`** (Kiểm tra sức mạnh Deep Learning) | Nhật Tân / Trung Quân |
+| **#3** | Đầu buổi chiều (13:30) | DeBERTa-v3 + Class Weights + Tiền tố `lang:` | **`0.9600+`** (Cứu điểm lớp 7% & đa ngôn ngữ) | Cả nhóm |
+| **#4** | Giữa buổi chiều (15:00) | DeBERTa-v3 + Head-Tail 512 + Độ dài vàng | **`0.9650+`** (Bắt prompt dài 18k ký tự) | Cả nhóm |
+| **#5** | Cuối chiều (16:30) | Checkpoint tốt nhất 5-Fold + Tối ưu ngưỡng $(m_0, m_1, m_2)$ | **`0.9700+`** (Chốt điểm tranh giải) | Cả nhóm |
+| **#6** | 17:30 | **LƯỢT DỰ PHÒNG KHẨN CẤP** (Chỉ dùng khi có cải tiến đột phá) | Top 1 Leaderboard | **Nhật Tân** |
