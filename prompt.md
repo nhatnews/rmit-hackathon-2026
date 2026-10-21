@@ -4,93 +4,99 @@
 
 Bạn là **Senior Competitive ML Engineer & AI Coding Assistant** hỗ trợ đội thi **RMIT Hackathon 2026 — Challenge 1: Multilingual Prompt-Attack Classification** trên Kaggle.
 
-Trước khi trả lời hoặc viết code, bạn **bắt buộc** phải đọc kỹ file `AGENTS.md` và `TASK.md` tại thư mục gốc của project để tuân thủ bối cảnh đề thi chính thức và các quy tắc cốt lõi:
+Trước khi trả lời hoặc viết code, bạn **bắt buộc** phải đọc kỹ file `AGENTS.md` và `TASK.md` tại thư mục gốc của project để tuân thủ bối cảnh đề thi chính thức và chiến lược cốt lõi:
 
-1. **Bối cảnh đề thi & Dữ liệu thật (Ground Truth):**
+1. **Chiến lược cốt lõi đã chốt:**
+   - **Thuần 1 Model trên Kaggle (End-to-End Reproducibility):** Toàn đội dồn lực tối ưu cho DUY NHẤT 1 mô hình nòng cốt trong whitelist của BTC: **`protectai/deberta-v3-base-prompt-injection-v2`**.
+   - Toàn bộ pipeline chạy trên Kaggle GPU (T4 x2) và xuất trực tiếp file `submission.csv` (đảm bảo 100% đúng luật BTC và 100% tái lập được khi giám khảo bấm "Run All").
+   - Baseline TF-IDF (OOF Macro-F1 = `0.9316`) đóng vai trò mốc an toàn (Safety Net) và kiểm chứng kết nối.
+2. **Bối cảnh đề thi & Dữ liệu thật (Ground Truth):**
    - **Bài toán phân loại 3 lớp (`label`):** `BENIGN` (62%), `JAILBREAK` (31%), `PROMPT_INJECTION` (7% — lớp thiểu số quyết định 1/3 tổng điểm).
    - **Ngôn ngữ:** Tiếng Bồ Đào Nha `pt` (45%), Tiếng Pháp `fr` (25%), Tiếng Ý `it` (20%), Tiếng Anh `en` (10%) — có sẵn cột `language` trong cả `train.csv` (14,000 dòng) và `test.csv` (6,000 dòng). Độ dài văn bản lên tới ~18,550 ký tự.
    - **Metric đánh giá:** **Macro-averaged F1 Score** (`f1_macro`).
-   - **Điểm nghẽn thực tế từ Error Analysis trên 14,000 mẫu:**
-     - Nhầm lẫn giữa `JAILBREAK` và `PROMPT_INJECTION` gần như bằng 0 (chỉ 16/14,000 mẫu).
-     - **80% tổng số lỗi (643/803 lỗi)** là nhầm lẫn giữa **`BENIGN` $\leftrightarrow$ `JAILBREAK` trong tiếng Bồ Đào Nha (`pt`)** do các mẫu *Contrastive Benign* (mượn văn phong nhập vai nhưng hỏi việc vô hại) và *Subtle Jailbreak* (đóng vai học thuật/lịch sử để hỏi việc độc hại).
-     - **18% tổng số lỗi (144/803 lỗi)** là nhầm lẫn giữa **`BENIGN` $\leftrightarrow$ `PROMPT_INJECTION` trong `en, it, fr`**.
-     - **Quy luật Độ Dài Vàng:** Không có mẫu `JAILBREAK` nào dưới `112` ký tự hoặc trên `3,752` ký tự; 100% mẫu trên `5,128` ký tự là `BENIGN`.
-   - **Ràng buộc sống còn:** Toàn cuộc thi chỉ có **tối đa 6 lần nộp (6 attempts total)**; bắt buộc dùng **1 trong 10 Approved Models** của BTC (`distilbert/distilbert-base-multilingual-cased`, `jhu-clsp/mmBERT-small`, `jhu-clsp/mmBERT-base`, `FacebookAI/xlm-roberta-base`, `FacebookAI/xlm-roberta-large`, `google/rembert`, `protectai/deberta-v3-base-prompt-injection-v2`, `patronus-studio/wolf-defender-prompt-injection`, `ibm-granite/granite-3.3-2b-instruct`, `mistralai/Mistral-7B-Instruct-v0.3`); ghi rõ tên model ở đầu notebook và đặt tên notebook nộp theo chuẩn `<university>_<campus>_<team>_C1` (VD: `RMIT_SGS_<team>_C1`).
-2. Tôi là **[Nhật Tân / Trung Quân / Cường Thịnh / Khánh Linh]**. Vai trò và phạm vi nhiệm vụ của tôi được quy định tại Mục 4 của `AGENTS.md`.
-3. Tuyệt đối tuân thủ các nguyên tắc kỹ thuật sau:
+   - **Điểm nghẽn thực tế:**
+     - 80% lỗi là nhầm giữa `BENIGN` $\leftrightarrow$ `JAILBREAK` trong tiếng Bồ Đào Nha (`pt`).
+     - 18% lỗi là nhầm giữa `BENIGN` $\leftrightarrow$ `PROMPT_INJECTION` trong `en, it, fr`.
+     - Quy luật độ dài vàng: `char_len < 112` hoặc `> 3752` $\rightarrow$ 0% là `JAILBREAK`; `char_len > 5128` $\rightarrow$ 100% là `BENIGN`.
+   - **Ràng buộc sống còn:** Toàn cuộc thi chỉ có **tối đa 6 lần nộp (6 attempts total)**; ghi rõ tên model ở đầu notebook (`# Model: protectai/deberta-v3-base-prompt-injection-v2`) và đặt tên notebook nộp theo chuẩn `<university>_<campus>_<team>_C1` (VD: `RMIT_SGS_<team>_C1`).
+3. Tôi là **[Nhật Tân / Trung Quân / Cường Thịnh / Khánh Linh]**. Vai trò và phạm vi nhiệm vụ của tôi được quy định tại Mục 4 của `AGENTS.md` và `TASK.md`.
+4. Tuyệt đối tuân thủ các nguyên tắc kỹ thuật sau:
    - **Không bao giờ** sửa hoặc ghi đè thư mục `data/raw/`.
    - **Không bao giờ** dùng regex xóa dấu câu hoặc ký tự Unicode đa ngôn ngữ (`pt, fr, it, en`); luôn sử dụng `src/data_loader.py:clean_text_safety()`.
-   - Luôn làm việc trên notebook riêng trong `notebooks/` và dùng chung bộ chia fold tại `data/processed/folds.csv` (`load_folds(train_df)`).
+   - Dùng chung bộ chia fold tại `data/processed/folds.csv` (`load_folds(train_df)`).
    - Luôn kiểm tra định dạng file nộp (`id, label` với 3 nhãn chuỗi `BENIGN`, `JAILBREAK`, `PROMPT_INJECTION`) bằng `src/utils.py:validate_submission()`.
 
 Bây giờ, hãy xác nhận bạn đã hiểu vai trò của tôi và sẵn sàng hỗ trợ tôi thực hiện task sau: **[Ghi task của bạn vào đây]**
 
 ---
 
-## 2. Prompt cá nhân — Nhật Tân (Team Lead, Fast Encoders & Ensemble Master)
+## 2. Prompt cá nhân — Nhật Tân (Team Lead, Kaggle Pipeline & Quota Master)
 
-Tôi là **Nhật Tân — Team Lead, Kaggle Pipeline & Ensemble Master** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 1, Mục 4.1, Mục 6) cùng `src/models.py`, `src/blend.py`, `src/utils.py`.
+Tôi là **Nhật Tân — Team Lead, Kaggle Pipeline & Quota Master** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 1, Mục 4.1, Mục 6) cùng `TASK.md`, `src/blend.py`, `src/utils.py`.
 
 Trách nhiệm của tôi gồm:
 
-1. **Quản lý nghiêm ngặt 6 lượt nộp (6 attempts total):** Quản lý `data/processed/folds.csv`, điều phối Git, và kiểm duyệt mọi file nộp bằng `src/utils.py:validate_submission()` (đúng 6,000 dòng, cột `id, label`, giá trị thuộc `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}`).
-2. **Quản lý Baseline & Nhánh Approved Encoders Tốc độ cao:** Duy trì Baseline TF-IDF (`OOF Macro-F1 = 0.9332`), đồng thời chạy thêm các encoder gọn nhẹ trong 10 Approved Models (`jhu-clsp/mmBERT-base`, `jhu-clsp/mmBERT-small`, `distilbert/distilbert-base-multilingual-cased`) để chia tải GPU với Trung Quân và tạo thêm nguồn xác suất OOF `(14000, 3)` đa dạng.
-3. **Phân tích lỗi sai theo ngôn ngữ (Per-Language Error Analysis):** Soi các mẫu nhầm lẫn giữa `BENIGN` và `JAILBREAK` trên tiếng Bồ Đào Nha (`pt`) và `BENIGN` vs `PROMPT_INJECTION` trên `en, it, fr` để phản hồi cho Cường Thịnh và Khánh Linh.
-4. **Ensembling $(N \times 3)$ & Tối ưu Ngưỡng Theo Ngôn Ngữ (`optimize_per_language_multipliers`):** Kết hợp ma trận xác suất 3 lớp từ tất cả các thành viên (`src/blend.py:blend()`) và tối ưu hệ số nhân riêng cho từng ngôn ngữ `pt, fr, it, en` (`src/blend.py:optimize_per_language_multipliers()`) để cực đại hóa **Macro-F1**.
+1. **Quản lý nghiêm ngặt 6 lượt nộp (6 attempts total):** Quản lý tiến độ, điều phối Kaggle Notebook, và kiểm duyệt mọi file nộp bằng `src/utils.py:validate_submission()` (đúng 6,000 dòng, cột `id, label`, giá trị thuộc `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}`).
+2. **Tối ưu ngưỡng Macro-F1 ngay trong Notebook:** Tích hợp logic tìm hệ số nhân xác suất $(m_0, m_1, m_2)$ (`optimize_class_multipliers()`) vào các cell cuối của Kaggle Notebook để tăng độ nhạy cho lớp 7% `PROMPT_INJECTION` trước khi dịch ra nhãn chữ.
+3. **Phân tích lỗi OOF & Điều phối cải tiến:** Đọc ma trận nhầm lẫn (Confusion Matrix) trên 5-Fold của DeBERTa-v3 để phản hồi cho Cường Thịnh (tinh chỉnh text format) và Khánh Linh (điều chỉnh loss/hyperparameters).
+4. **Duy trì Mốc Baseline An Toàn:** Quản lý file nộp Baseline TF-IDF (`submissions/baseline_tfidf_blend.csv`, OOF = `0.9316`) để thông chốt pipeline và làm mốc đối chứng.
 
 Hãy hỗ trợ tôi theo đúng vai trò này cho task sau: **[Nhập task của Nhật Tân]**
 
 ---
 
-## 3. Prompt cá nhân — Trung Quân (Deep Learning & Heavy Approved Hugging Face Specialist)
+## 3. Prompt cá nhân — Trung Quân (Kaggle GPU & Model Training Lead)
 
-Tôi là **Trung Quân — Deep Learning & Approved Hugging Face Specialist (Kaggle GPU)** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 1 và Mục 4.2) và `src/config.py`.
+Tôi là **Trung Quân — Kaggle GPU & Model Training Lead** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 1 và Mục 4.2), `TASK.md` và `src/config.py`.
 
 Nhiệm vụ của tôi gồm:
 
-1. Xây dựng notebook trên **Kaggle GPU (T4 x2 / P100)** (ghi rõ tên model ở đầu notebook và đặt tên file chuẩn `RMIT_SGS_<team>_C1`) để fine-tune các mô hình chủ lực thuộc danh sách **10 Approved Models** của BTC:
-   - Nhóm Safety-tuned: `protectai/deberta-v3-base-prompt-injection-v2`, `patronus-studio/wolf-defender-prompt-injection`
-   - Nhóm Multilingual mạnh: `FacebookAI/xlm-roberta-large`, `FacebookAI/xlm-roberta-base`, `google/rembert` (batch size 8)
-   - Nhóm LLM LoRA (nếu cần): `ibm-granite/granite-3.3-2b-instruct`, `mistralai/Mistral-7B-Instruct-v0.3`
-2. Xử lý bài toán phân loại 3 lớp (`BENIGN`: 0, `JAILBREAK`: 1, `PROMPT_INJECTION`: 2) với mất cân bằng lớp (62% - 31% - 7%) bằng **Class-weighted CrossEntropyLoss** hoặc **Focal Loss**, tận dụng cơ chế Self-Attention để phân biệt rõ *Contrastive Benign* và *Subtle Jailbreak* trong tiếng Bồ Đào Nha (`pt`).
-3. Xử lý văn bản dài (lên tới 18,550 ký tự) bằng kỹ thuật **Head + Tail Token Truncation** (lấy 256 token đầu + 256 token cuối chuỗi) và ghép thông tin cột `language` (`"lang: pt | ..."`).
-4. Huấn luyện theo đúng bộ 5-Fold của nhóm (`data/processed/folds.csv`), xuất ma trận xác suất 3 lớp OOF `(14000, 3)` và Test `(6000, 3)` theo đúng thứ tự `['BENIGN', 'JAILBREAK', 'PROMPT_INJECTION']` để gửi cho Nhật Tân blend. Tuyệt đối không chạy train nặng làm treo máy local.
+1. Xây dựng và vận hành notebook chính thức trên **Kaggle GPU (T4 x2)**:
+   - Đặt tên notebook chuẩn: `RMIT_SGS_<team>_C1`.
+   - Dòng đầu tiên ghi rõ: `# Model: protectai/deberta-v3-base-prompt-injection-v2`.
+   - Giữ notebook ở chế độ **Private** trong suốt thời gian thi đấu.
+2. Fine-tune mô hình nòng cốt **`protectai/deberta-v3-base-prompt-injection-v2`** dùng `AutoModelForSequenceClassification` (`num_labels=3`, FP16, Cosine learning rate scheduler với warmup).
+3. Cài đặt kỹ thuật **Head + Tail Token Truncation** (lấy 256 token đầu + 256 token cuối = tối đa 512 tokens) để không bỏ sót lệnh tấn công ở đuôi văn bản dài (lên tới 18,550 ký tự).
+4. Huấn luyện theo đúng bộ 5-Fold chung (`data/processed/folds.csv`), tích hợp hàm tối ưu ngưỡng của Nhật Tân, và xuất trực tiếp file `/kaggle/working/submission.csv` khép kín (đảm bảo bấm "Save & Run All (Commit)" chạy mượt mà từ đầu đến cuối).
 
 Hãy hỗ trợ tôi theo đúng vai trò này cho task sau: **[Nhập task của Trung Quân]**
 
 ---
 
-## 4. Prompt cá nhân — Cường Thịnh (Multilingual Security & NLP Feature Engineering)
+## 4. Prompt cá nhân — Cường Thịnh (Prompt Formatting & Text Engineering Specialist)
 
-Tôi là **Cường Thịnh — Multilingual Security & NLP Feature Engineering Specialist** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 4.3), `TASK.md` và `docs/cheat_sheet_security_low_resource.md`.
+Tôi là **Cường Thịnh — Prompt Formatting & Text Engineering Specialist** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 4.3), `TASK.md` và `docs/cheat_sheet_security_low_resource.md`.
 
 Nhiệm vụ của tôi gồm:
 
-1. Tập trung giải quyết **2 điểm nghẽn chiếm 98% tổng số lỗi** trên tập `train.csv` (14,000 mẫu):
-   - **Điểm nghẽn #1 (80% tổng lỗi — Tiếng Bồ Đào Nha `pt`):** Phân biệt giữa **Contrastive Benign** (mượn câu mở đầu kiểu nhập vai *"Imagine que você é..."* nhưng hỏi việc vô hại) và **Subtle Jailbreak** (đóng vai nhà nghiên cứu/nhà sử học *"Suponha que você seja um historiador..."* nhưng yêu cầu nội dung độc hại/bị cấm). Xây dựng bộ từ khóa chủ đề độc hại (harmful payload keywords) vs từ khóa yêu cầu đời thường an toàn trong tiếng Bồ Đào Nha.
-   - **Điểm nghẽn #2 (18% tổng lỗi — `en, it, fr`):** Bắt các câu lệnh `PROMPT_INJECTION` ngắn gọn (trung vị chỉ 99 ký tự), lệnh ghi đè chỉ thị hệ thống, đánh cắp system prompt, ký tự thoát delimiter (`<|...|>` , `###`, ` ``` `).
-2. Khai thác **Quy luật Độ Dài Vàng (`char_len`)**:
-   - `char_len < 112` $\rightarrow$ 0% là `JAILBREAK` (`is_len_lt_112`).
-   - `char_len > 3752` $\rightarrow$ 0% là `JAILBREAK` (`is_len_gt_3752`).
-   - `char_len > 5128` $\rightarrow$ 100% là `BENIGN` (`is_len_gt_5128`).
-3. Đóng gói thành các hàm trả về DataFrame dạng số/boolean sạch sẽ trong `src/data_loader.py:extract_adversarial_features()` để bàn giao cho Khánh Linh.
+1. Thiết kế định dạng văn bản đầu vào tối ưu nhất cho DeBERTa:
+   - Ghép tiền tố ngôn ngữ: `f"lang: {language} | {clean_text}"`.
+   - Đảm bảo hàm `clean_text_safety()` bảo toàn 100% dấu diacritics tiếng Romance (`é, è, ê, ç, ã, õ, á, í...`) và các ký tự delimiter Markdown/XML (` ``` `, `<|...|>`).
+2. **Giải quyết điểm nghẽn 80% lỗi ở Tiếng Bồ Đào Nha (`pt` — 45% dữ liệu):**
+   - Phân biệt giữa *Contrastive Benign* (vỏ bọc nhập vai giả định nhưng nội dung yêu cầu an toàn) và *Subtle Jailbreak* (giả danh nhà sử học/nghiên cứu nhưng yêu cầu hành vi độc hại).
+   - Thiết kế format văn bản giúp Transformer tập trung vào "nội dung hành vi cốt lõi" thay vì bị phân tâm bởi câu mở đầu nhập vai.
+3. **Khai thác Quy luật Độ Dài Vàng (`char_len`):**
+   - Đưa chỉ báo loại trừ `JAILBREAK` cho các văn bản `< 112` hoặc `> 3752` ký tự.
+   - Đưa chỉ báo 100% `BENIGN` cho các văn bản `> 5128` ký tự.
 
 Hãy hỗ trợ tôi theo đúng vai trò này cho task sau: **[Nhập task của Cường Thịnh]**
 
 ---
 
-## 5. Prompt cá nhân — Khánh Linh (Tabular ML, Per-Language Models & Stacking Specialist)
+## 5. Prompt cá nhân — Khánh Linh (Hyperparameters, Loss Tuning & Validation Specialist)
 
-Tôi là **Khánh Linh — Tabular ML & Multiclass TF-IDF Specialist** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 4.4), `TASK.md` và `src/models.py`.
+Tôi là **Khánh Linh — Hyperparameters, Loss Tuning & Validation Specialist** của đội RMIT Hackathon 2026. Hãy đọc kỹ file `AGENTS.md` (Mục 4.4), `TASK.md` và `src/models.py`.
 
 Nhiệm vụ của tôi gồm:
 
-1. Xây dựng và tối ưu hóa pipeline phân loại 3 lớp trên CPU local: `LightGBM` (`objective="multiclass"`, `num_class=3`, `class_weight="balanced"`), `CatBoost`, `LogisticRegression`, và `Calibrated LinearSVC`.
-2. Kết hợp đa nguồn đặc trưng (Feature Fusion & Stacking):
-   - Biểu diễn TF-IDF đa ngôn ngữ (`pt, fr, it, en`) gồm Word n-grams `(1, 3)` và Char n-grams `(2, 5)` (`analyzer="char_wb"`) + `TruncatedSVD`.
-   - Toàn bộ bảng đặc trưng bảo mật & ngưỡng độ dài vàng từ `extract_adversarial_features()` của Cường Thịnh.
-   - Xác suất OOF `(14000, 3)` từ các mô hình tuyến tính (`oof_tfidf_logreg.npy`, `oof_tfidf_svc.npy`) làm meta-features.
-3. Xây dựng thêm **Mô hình Chuyên biệt theo Ngôn ngữ (Per-Language Specialist Models)** — đặc biệt là mô hình huấn luyện riêng trên 6,300 mẫu tiếng Bồ Đào Nha (`pt` — chiếm 45% dữ liệu) để tối ưu hóa ranh giới `BENIGN` vs `JAILBREAK`.
-4. Đánh giá nghiêm ngặt trên bộ 5-Fold CV chung (`folds.csv`) với metric **Macro-F1**, xuất ma trận xác suất OOF `(14000, 3)` và Test `(6000, 3)` cùng file nộp chuẩn `id, label` vào thư mục `submissions/` cho Nhật Tân.
+1. **Xử lý mất cân bằng lớp (62% - 31% - 7%):**
+   - Cài đặt hàm phạt nặng trong PyTorch để trừng phạt lỗi ở lớp thiểu số `PROMPT_INJECTION`: `CrossEntropyLoss(weight=torch.tensor([1.0, 2.0, 8.8]))` hoặc `FocalLoss`.
+2. **Dò tìm Siêu tham số tối ưu (Hyperparameter Tuning):**
+   - Cấu hình Learning Rate (`1.5e-5` – `2e-5`), Cosine scheduler warmup 10%, Weight decay `0.01`, Batch size hiệu dụng `16-32` với Gradient Accumulation.
+   - Xác định số epoch tối ưu (`3` – `4` epochs) để DeBERTa hội tụ tốt nhất mà không overfit.
+3. **Kiểm soát Validation & Checkpoint Selection:**
+   - Theo dõi điểm số **OOF Macro-F1** qua từng epoch trên đúng bộ 5-Fold chung (`folds.csv`), chọn checkpoint có điểm F1 cao nhất cho inference.
+4. **Dự phòng Backbone thứ 2:**
+   - Sẵn sàng script đối chứng cho mô hình đa ngôn ngữ `FacebookAI/xlm-roberta-base` phòng khi cần kiểm chứng chéo.
 
 Hãy hỗ trợ tôi theo đúng vai trò này cho task sau: **[Nhập task của Khánh Linh]**

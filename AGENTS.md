@@ -58,20 +58,17 @@ automated AI coding assistant.
   - **Notebook naming:** `<university>_<campus>_<team>_C1` (e.g.,
     `RMIT_SGS_<team>_C1`).
 
-## 2. Core Philosophy: "Baseline First, CV-Driven Ensembling"
+## 2. Core Philosophy: "Single Approved Backbone on Kaggle (DeBERTa-v3 Focus)"
 
-1. **Protect the 6-submission quota:** Never submit unverified files. Validate
-   all modeling decisions locally or on a Kaggle GPU using the shared 5-Fold
-   split (`data/processed/folds.csv`) and **Out-Of-Fold (OOF) Macro-F1**.
-2. **Start simple and fast:** Benchmark 3-class TF-IDF (`word` n-grams
-   `(1, 3)` + `char_wb` n-grams `(2, 5)`) with `language` features and
-   `LogisticRegression`, `LinearSVC`, or `LightGBM`
-   (`class_weight="balanced"`).
-3. **Keep the local machine responsive:** Do not launch heavy deep learning
-   training jobs on local CPUs or laptop GPUs without explicit user
-   instruction. Fine-tune approved Hugging Face transformers (e.g.,
-   `protectai/deberta-v3-base-prompt-injection-v2` and
-   `FacebookAI/xlm-roberta-base`) on **Kaggle Notebook GPUs (T4 x2 / P100)**.
+1. **Strict 100% Rule Compliance & Reproducibility:**
+   - BTC Rule: *"You must build your solution on one of the following approved models... no other pretrained backbone is allowed"* and *"State the chosen model at the top of the Kaggle notebook"*.
+   - The team focuses 100% of its resources on **one primary approved backbone**: **`protectai/deberta-v3-base-prompt-injection-v2`** (a security-tuned model already pretrained for prompt injection).
+   - The complete pipeline runs end-to-end within the official Kaggle Notebook (`RMIT_SGS_<team>_C1`), generating `submission.csv` directly upon running the notebook, ensuring 100% audit compliance and reproducibility.
+2. **Protect the 6-submission quota:** Never submit unverified files. Validate
+   all modeling decisions using the shared 5-Fold split (`data/processed/folds.csv`) and **Out-Of-Fold (OOF) Macro-F1**.
+3. **Local Machine vs. Kaggle GPU:**
+   - Keep the local machine responsive: Baseline models (TF-IDF + Linear Classifier, OOF Macro-F1 = `0.9316`) run locally as a sanity check and safety net.
+   - Deep Learning training runs strictly on **Kaggle Notebook GPUs (T4 x2 / P100)**.
 
 ## 3. Strict Operating Rules (Zero Exceptions)
 
@@ -91,87 +88,59 @@ automated AI coding assistant.
   `NaN`/`null`/`inf`, and that every prediction belongs to
   `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}`.
 
-## 4. Team Members, Roles & Agent Guidance
+## 4. Team Members, Roles & Agent Guidance (Single-Model Pipeline Collaboration)
 
 When a user identifies themselves or works on a specific task, the AI Agent
 **must** tailor its technical advice, code suggestions, and scope according to
-their designated role.
+their designated role within the unified Kaggle single-model pipeline.
 
-### 1. Nhật Tân — Team Lead, Kaggle Pipeline & Ensemble Master
+### 1. Nhật Tân — Team Lead, Kaggle Pipeline & Quota Master
 
 - **Scope and responsibilities**
   - **Quota and pipeline governance:** Strictly guards the **6 total
-    submissions** limit for the entire competition; generates and locks
-    `data/processed/folds.csv` (`src/folds.py:make_folds()`) so all four
-    members evaluate on identical 5-Fold splits; validates every candidate
-    submission with `src/utils.py:validate_submission()`.
-  - **3-Class Fast Baseline:** Builds and verifies the 3-class baseline (`TF-IDF + language + LogisticRegression / Calibrated LinearSVC`, `class_weight="balanced"`, OOF Macro-F1 = `0.9332`).
-  - **Fast Approved Multilingual Encoders & Embeddings:** Runs fast encoders from the 10 Approved Models whitelist (e.g., `jhu-clsp/mmBERT-base`, `jhu-clsp/mmBERT-small`, `distilbert/distilbert-base-multilingual-cased`) on a parallel Kaggle GPU session or extracts embeddings for linear/MLP/CatBoost heads to prevent GPU bottlenecks on a single person.
-  - **Error analysis and hard example mining:** Inspects OOF confusion matrices across `pt`, `fr`, `it`, and `en` (focusing on the #1 error bottleneck: `BENIGN` vs. `JAILBREAK` in Portuguese `pt` due to contrastive benign roleplay vs. subtle academic jailbreaks, and #2: `BENIGN` vs. `PROMPT_INJECTION` in `en, it, fr`), then shares actionable insights with Cường Thịnh and Khánh Linh.
-  - **3-class probability blending and Per-Language Macro-F1 optimization:**
-    Combines $(N \times 3)$ OOF and test probability matrices
-    (`src/blend.py:blend()`) and optimizes both global (`optimize_class_multipliers()`) and per-language probability multipliers (`optimize_per_language_multipliers()`) to maximize Macro-F1.
+    submissions** limit for the entire competition; verifies the official Kaggle
+    Notebook `RMIT_SGS_<team>_C1`; runs `src/utils.py:validate_submission()` on every output before submitting.
+  - **In-Notebook Macro-F1 Threshold & Multiplier Optimization:**
+    Embeds the post-processing logic (`optimize_class_multipliers()`) directly into the final cells of the Kaggle notebook to scale class probabilities $(m_0, m_1, m_2)$, boosting sensitivity for the 7% `PROMPT_INJECTION` minority class.
+  - **Error Analysis and Iteration Direction:**
+    Inspects OOF confusion matrices across `pt`, `fr`, `it`, and `en` (focusing on the #1 error bottleneck: `BENIGN` vs. `JAILBREAK` in Portuguese `pt` due to contrastive benign roleplay vs. subtle academic jailbreaks, and #2: `BENIGN` vs. `PROMPT_INJECTION` in `en, it, fr`), directing prompt/feature updates to Cường Thịnh and loss/hyperparameter updates to Khánh Linh.
 - **Agent instructions**
-  - Provide end-to-end code for 3-class baselines, fold generation, OOF
-    confusion matrix diagnostics, $(N \times 3)$ probability blending, and
-    global/per-language class multiplier optimization for Macro-F1.
-  - Assist with Kaggle CLI commands, notebook naming
-    (`RMIT_SGS_<team>_C1`), and safe Git merges.
+  - Provide end-to-end code for notebook orchestration, threshold/multiplier tuning on PyTorch logits/softmax, Kaggle submission verification, and OOF error diagnostics.
+  - Assist with Kaggle CLI commands, notebook naming (`RMIT_SGS_<team>_C1`), and safe Git merges.
 
-### 2. Trung Quân — Deep Learning & Approved Hugging Face Specialist (Kaggle GPU)
+### 2. Trung Quân — Kaggle GPU & Model Training Lead
 
 - **Scope and responsibilities**
-  - Fine-tunes strictly **Approved Models** from the official 10-model Kaggle
-    whitelist (prioritizing safety-tuned & heavy multilingual models:
-    `protectai/deberta-v3-base-prompt-injection-v2`,
-    `patronus-studio/wolf-defender-prompt-injection`,
-    `FacebookAI/xlm-roberta-large`, `FacebookAI/xlm-roberta-base`,
-    `google/rembert` with batch size 8, or LoRA on `ibm-granite/granite-3.3-2b-instruct` / `mistralai/Mistral-7B-Instruct-v0.3`).
-  - Always states the chosen model at the top of the Kaggle notebook per competition rules.
-  - Works on **Kaggle Notebooks with GPU (T4 x2 / P100)** using the shared `folds.csv` split.
-  - Mitigates the 62%–31%–7% class imbalance using **Class-Weighted CrossEntropyLoss** or **Multi-class Focal Loss**, while leveraging Transformer self-attention to resolve Portuguese (`pt`) contrastive `BENIGN` vs. subtle `JAILBREAK` errors.
-  - Handles long prompts (up to 18k chars) via **Head+Tail Token Truncation** (e.g., first 256 + last 256 tokens) and prepends the `language` tag (`"lang: fr | ..."`).
-  - Exports 3-class OOF `(14000, 3)` and Test `(6000, 3)` probability arrays
-    (`.npy`/`.parquet`) in canonical class order
-    `['BENIGN', 'JAILBREAK', 'PROMPT_INJECTION']` for Nhật Tân to ensemble.
+  - Builds and maintains the official Kaggle Notebook (`RMIT_SGS_<team>_C1`) powered by **`protectai/deberta-v3-base-prompt-injection-v2`** with `AutoModelForSequenceClassification` (`num_labels=3`).
+  - Always declares `# Model: protectai/deberta-v3-base-prompt-injection-v2` at the very top of the notebook per competition rules.
+  - Implements **Head + Tail Token Truncation** (e.g., first 256 + last 256 tokens = 512 max length) to capture both opening framing and trailing attack payloads in prompts up to 18k chars.
+  - Enables FP16 mixed precision, Cosine learning rate scheduling with warmup, and gradient accumulation on Kaggle GPU (T4 x2).
+  - Ensures the notebook executes end-to-end to output `/kaggle/working/submission.csv` seamlessly upon "Run All".
 - **Agent instructions**
-  - Provide clean, memory-efficient PyTorch / Hugging Face `transformers`
-    code (`AutoModelForSequenceClassification` with `num_labels=3`, `LABEL2ID`,
-    `ID2LABEL`, FP16 mixed precision, cosine scheduler, and gradient
-    accumulation).
-  - Never suggest unapproved external backbones or run heavy neural training on the local CPU.
+  - Provide clean, memory-efficient PyTorch / Hugging Face `transformers` code (`AutoModelForSequenceClassification`, `AutoTokenizer`, Head+Tail truncation, FP16, DataLoader, training loop).
+  - Never run heavy neural training on the local CPU or suggest unapproved external backbones.
 
-### 3. Cường Thịnh — Multilingual Security & NLP Feature Engineering Specialist
+### 3. Cường Thịnh — Prompt Formatting & Text Engineering Specialist
 
 - **Scope and responsibilities**
-  - Analyzes real OOF error patterns across **Portuguese (`pt` — 45%), French (`fr` — 25%), Italian (`it` — 20%), and English (`en` — 10%)**.
-  - Focuses on the two primary error sources found in EDA:
-    1. **`BENIGN` vs. `JAILBREAK` in Portuguese (`pt` — 80% of all errors):** Crafts semantic payload vs. benign roleplay indicators to distinguish *Contrastive Benign* (harmless requests wrapped in playful/adversarial framing) from *Subtle Jailbreaks* (harmful requests wrapped in polite academic/historical/hypothetical framing).
-    2. **`BENIGN` vs. `PROMPT_INJECTION` in `en, it, fr` (18% of all errors):** Crafts short-prompt command/override and delimiter escape detectors (`<|im_start|>`, `### Instruction`, system prompt extraction).
-  - Exploits **Golden Length Boundaries** discovered in `train.csv` (`char_len < 112` $\rightarrow$ 0% `JAILBREAK`; `char_len > 3752` $\rightarrow$ 0% `JAILBREAK`; `char_len > 5128` $\rightarrow$ 100% `BENIGN`) and per-language statistics.
-  - Delivers modular numeric/boolean feature DataFrames (`src/data_loader.py:extract_adversarial_features()`) to Khánh Linh.
+  - Prepares the optimal textual representation for DeBERTa-v3 across **Portuguese (`pt` — 45%), French (`fr` — 25%), Italian (`it` — 20%), and English (`en` — 10%)**.
+  - Designs the input formatting prefix: `f"lang: {language} | {clean_text}"` to activate language-specific attention heads.
+  - **Resolves the Portuguese (`pt`) bottleneck (80% of all errors):**
+    Crafts text pre-formatting to help the transformer separate *Contrastive Benign* (playful/hypothetical framing with safe intent) from *Subtle Jailbreaks* (academic/historical persona masking harmful intent).
+  - Integrates **Golden Length Boundary** cues into prompt text or metadata (`char_len < 112` or `> 3752` $\rightarrow$ impossible `JAILBREAK`; `char_len > 5128` $\rightarrow$ 100% `BENIGN`).
+  - Ensures all text cleaning preserves Romance diacritics and attack delimiters via `clean_text_safety()`.
 - **Agent instructions**
-  - Provide Unicode-safe regex patterns for `pt, fr, it, en` (refer to `docs/cheat_sheet_security_low_resource.md`), golden length boundary extractors, and vectorized pandas feature functions.
+  - Provide vectorized pandas text formatting functions, Unicode-safe regex patterns (refer to `docs/cheat_sheet_security_low_resource.md`), and prompt engineering recipes for DeBERTa input pipelines.
 
-### 4. Khánh Linh — Tabular ML & Multiclass TF-IDF Specialist
+### 4. Khánh Linh — Hyperparameters, Loss Tuning & Validation Specialist
 
 - **Scope and responsibilities**
-  - Builds fast, high-performing local 3-class models: `LightGBM`
-    (`objective="multiclass"`, `num_class=3`,
-    `class_weight="balanced"`), `CatBoost`, `LogisticRegression`, and
-    `CalibratedClassifierCV(LinearSVC)`.
-  - Combines multilingual TF-IDF matrices (word n-grams `(1, 3)` and char
-    n-grams `(2, 5)` with `char_wb`), `language` indicators, OOF meta-probabilities (stacking), and Cường Thịnh's
-    tabular security features (via `scipy.sparse.hstack` / `TruncatedSVD`).
-  - Explores **Per-Language Specialist Models** (especially a dedicated Portuguese `pt` classifier for the 45% `pt` subset where `BENIGN` vs. `JAILBREAK` is hardest).
-  - Evaluates strictly on the shared 5-Fold Stratified CV (`folds.csv`),
-    tracking **Macro-F1** and per-class F1 (`BENIGN`, `JAILBREAK`,
-    `PROMPT_INJECTION`).
-  - Exports 3-class OOF `(14000, 3)` and Test `(6000, 3)` probabilities,
-    plus validated `id, label` submissions to `submissions/`.
+  - Mitigates the 62%–31%–7% class imbalance in DeBERTa-v3 training by implementing **Class-Weighted CrossEntropyLoss** (`weights = torch.tensor([1.0, 2.0, 8.8])`) or **Multi-class Focal Loss**.
+  - Tunes training hyperparameters: Learning rate (`1.5e-5` – `2e-5`), warmup ratio (`0.1`), weight decay (`0.01`), batch size with gradient accumulation (`effective batch size 16-32`).
+  - Evaluates models strictly on the shared 5-Fold split (`data/processed/folds.csv`), selecting the best epoch checkpoint by **Macro-F1** (not loss) to prevent leaderboard overfitting.
+  - Maintains a standby configuration for the secondary multilingual backbone (`FacebookAI/xlm-roberta-base`) for comparative validation if needed.
 - **Agent instructions**
-  - Provide clean scikit-learn/LightGBM multiclass pipelines, per-language specialist training loops, sparse/dense
-    feature concatenation recipes, and feature-importance diagnostics.
+  - Provide PyTorch loss functions (weighted CrossEntropy, Focal Loss), learning rate scheduler setups, stratified fold validation loops, and metric logging functions.
 
 ---
 
