@@ -2,65 +2,87 @@
 
 ## 🤖 Critical Instructions for AI Coding Agents & Team Members
 
-Applies to Antigravity, Cursor, GitHub Copilot, Claude Code, Windsurf, and all team members.
-Read [`AGENTS.md`](file:///d:/Code/rmit-hackathon-2026/AGENTS.md) first before generating or modifying any code.
+Applies to Antigravity, Cursor, GitHub Copilot, Claude Code, Windsurf, and all
+team members. Read [`AGENTS.md`](file:///d:/Code/rmit-hackathon-2026/AGENTS.md)
+before generating or modifying code.
 
-1. **Bối cảnh đề thi chính thức (Official Ground Truth)**
-   - **Cuộc thi:** `rmit-hackathon-2026` — **Challenge 1: Multilingual
-     Prompt-Attack Classification** trên Kaggle.
-   - **Bản chất bài toán:** Phân loại 3 lớp (**3-Class Classification** trên
-     cột `label`):
-     - `BENIGN` (~62% tập train): Yêu cầu bình thường, an toàn.
-     - `JAILBREAK` (~31% tập train): Thao túng vượt rào an toàn (DAN,
-       roleplay, giả định, mã hóa).
-     - `PROMPT_INJECTION` (~7% tập train — **lớp thiểu số quyết định**):
-       Chiếm quyền điều khiển chỉ thị hệ thống.
-   - **Ngôn ngữ thực tế:** **Tiếng Bồ Đào Nha (`pt`), tiếng Pháp (`fr`),
-     tiếng Ý (`it`) và tiếng Anh (`en`)**; có sẵn cột `language`. Độ dài văn
-     bản có thể lên tới **~18,000 ký tự**.
-   - **Metric đánh giá:** **Macro-averaged F1 Score**
-     ($\frac{1}{3}(F1_{\text{BENIGN}} + F1_{\text{JAILBREAK}} +
-     F1_{\text{PROMPT\_INJECTION}})$).
-   - **Cấu trúc dữ liệu:**
-     - `train.csv` (14,000 dòng): `id`, `text`, `language`, `label`
-     - `test.csv` (6,000 dòng): `id`, `text`, `language`
-     - `sample_submission.csv` (6,000 dòng): `id`, `label` (giá trị chuỗi:
-       `BENIGN`, `JAILBREAK`, hoặc `PROMPT_INJECTION`).
-2. **Ràng buộc sống còn (Strict Competition Constraints)**
-   - 🚨 **Giới hạn nộp bài:** Tối đa **6 lượt nộp (6 attempts total)** cho
-     toàn bộ cuộc thi. Mọi quyết định phải dựa trên điểm 5-Fold OOF Macro-F1;
-     chỉ **Nhật Tân** được phép duyệt và nộp bài.
-   - 🚨 **Approved Models Only:** Bắt buộc xây dựng giải pháp trên **1 trong
-     10 mô hình được BTC phê duyệt** trên Kaggle Models. Không dùng pretrained
-     backbone nào khác và ghi rõ tên model ở đầu notebook.
+### Bối cảnh đề thi chính thức
 
-     | Mô hình (Model Name) | Loại | Kaggle Model | Gợi ý / Khuyến nghị |
-     | --- | --- | --- | --- |
-     | `distilbert/distilbert-base-multilingual-cased` | Encoder | [Kaggle](https://www.kaggle.com/models/aisuko/distilbert-base-multilingual-cased/Transformers/default) | Baseline nhanh nhất |
-     | `jhu-clsp/mmBERT-small` | Encoder | [Kaggle](https://www.kaggle.com/models/aisuko/mmbert-small/Transformers/default) | Nhanh, đa ngôn ngữ tốt |
-     | `jhu-clsp/mmBERT-base` | Encoder | [Kaggle](https://www.kaggle.com/models/aisuko/mmbert-base/Transformers/default) | Đa ngôn ngữ mạnh mẽ |
-     | `FacebookAI/xlm-roberta-base` | Encoder | [Kaggle](https://www.kaggle.com/models/aisuko/xlm-roberta-base/Transformers/default) | Đa ngôn ngữ rất mạnh |
-     | `FacebookAI/xlm-roberta-large` | Encoder | [Kaggle](https://www.kaggle.com/models/aisuko/xlm-roberta-large/Transformers/default) | Encoder tốt nhất, cần nhiều VRAM |
-     | `google/rembert` | Encoder | [Kaggle](https://www.kaggle.com/models/aisuko/rembert/Transformers/default) | Đa ngôn ngữ; khuyến nghị batch size 8 |
-     | `protectai/deberta-v3-base-prompt-injection-v2` | Encoder (Safety) | [Kaggle](https://www.kaggle.com/models/aisuko/deberta-v3-base-prompt-injection-v2/Transformers/default) | Đã học sẵn prompt injection |
-     | `patronus-studio/wolf-defender-prompt-injection` | Encoder (Safety) | [Kaggle](https://www.kaggle.com/models/aisuko/wolf-defender-prompt-injection/Transformers/default) | Đã học sẵn prompt injection |
-     | `ibm-granite/granite-3.3-2b-instruct` | LLM | [Kaggle](https://www.kaggle.com/models/aisuko/granite-3.3-2b-instruct/Transformers/default) | LLM fine-tuning / LoRA |
-     | `mistralai/Mistral-7B-Instruct-v0.3` | LLM | [Kaggle](https://www.kaggle.com/models/aisuko/mistral-7b-instruct-v0.3/Transformers/default) | LLM fine-tuning / LoRA |
-   - 🚨 **Quy tắc đặt tên notebook:** `<university>_<campus>_<team>_C1`
-     (ví dụ: `RMIT_SGS_<team>_C1`).
-3. **Quy tắc bắt buộc (Strict Warnings)**
-   - ❌ **Không sửa hoặc ghi đè `data/raw/`:** Chỉ đọc (`read-only`). Lưu dữ
-     liệu đã xử lý và `folds.csv` vào `data/processed/`.
-   - ❌ **Không xóa dấu câu hoặc ký tự Unicode của các ngôn ngữ Romance
-     (`pt`, `fr`, `it`) một cách mù quáng:** Không dùng regex
-     `[^a-zA-Z0-9]`. Luôn dùng `src/data_loader.py:clean_text_safety()`.
-   - ❌ **Không hardcode API keys hoặc Kaggle tokens:** Đọc qua `os.getenv()`
-     từ `.env` hoặc `kaggle_secrets`.
-   - ❌ **Không sửa notebook (`.ipynb`) của thành viên khác:** Mỗi thành viên
-     làm việc trên notebook riêng (`notebooks/01_<ten>_<task>.ipynb`).
-   - ✅ **Luôn kiểm tra file nộp bằng `validate_submission()`:** Đảm bảo đúng
-     tên cột (`id`, `label`), đúng 6,000 dòng khớp `test.csv`, không có `NaN`,
-     và nhãn thuộc `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}`.
+- **Cuộc thi:** `rmit-hackathon-2026` — **Challenge 1: Multilingual
+  Prompt-Attack Classification** trên Kaggle.
+- **Bài toán:** Phân loại 3 lớp trên cột `label`.
+  - `BENIGN` (~62% tập train): Yêu cầu bình thường, an toàn.
+  - `JAILBREAK` (~31% tập train): Thao túng vượt rào an toàn (DAN,
+    roleplay, giả định, mã hóa).
+  - `PROMPT_INJECTION` (~7% tập train — **lớp thiểu số quyết định**):
+    Chiếm quyền điều khiển chỉ thị hệ thống.
+- **Ngôn ngữ:** Tiếng Bồ Đào Nha (`pt`), tiếng Pháp (`fr`), tiếng Ý (`it`)
+  và tiếng Anh (`en`); dữ liệu có cột `language`. Độ dài văn bản có thể lên
+  tới **~18,000 ký tự**.
+- **Metric:** **Macro-averaged F1 Score**
+  ($\frac{1}{3}(F1_{\text{BENIGN}} + F1_{\text{JAILBREAK}} +
+  F1_{\text{PROMPT\_INJECTION}})$).
+- **Cấu trúc dữ liệu:**
+  - `train.csv` (14,000 dòng): `id`, `text`, `language`, `label`
+  - `test.csv` (6,000 dòng): `id`, `text`, `language`
+  - `sample_submission.csv` (6,000 dòng): `id`, `label` (các nhãn chuỗi:
+    `BENIGN`, `JAILBREAK`, `PROMPT_INJECTION`).
+
+### Ràng buộc cuộc thi
+
+- 🚨 **Giới hạn nộp bài:** Tối đa **6 lượt nộp (6 attempts total)** cho toàn
+  bộ cuộc thi. Mọi quyết định phải dựa trên điểm 5-Fold OOF Macro-F1; chỉ
+  **Nhật Tân** được phép duyệt và nộp bài.
+- 🚨 **Approved Models Only:** Chỉ sử dụng pretrained model trong danh sách
+  10 mô hình được BTC phê duyệt trên Kaggle Models. Ghi rõ tên model ở đầu
+  notebook.
+
+  **Encoder đa ngôn ngữ**
+
+  - [`distilbert/distilbert-base-multilingual-cased`](https://www.kaggle.com/models/aisuko/distilbert-base-multilingual-cased/Transformers/default)
+    — Baseline nhanh nhất.
+  - [`jhu-clsp/mmBERT-small`](https://www.kaggle.com/models/aisuko/mmbert-small/Transformers/default)
+    — Nhanh, đa ngôn ngữ tốt.
+  - [`jhu-clsp/mmBERT-base`](https://www.kaggle.com/models/aisuko/mmbert-base/Transformers/default)
+    — Đa ngôn ngữ mạnh mẽ.
+  - [`FacebookAI/xlm-roberta-base`](https://www.kaggle.com/models/aisuko/xlm-roberta-base/Transformers/default)
+    — Đa ngôn ngữ rất mạnh.
+  - [`FacebookAI/xlm-roberta-large`](https://www.kaggle.com/models/aisuko/xlm-roberta-large/Transformers/default)
+    — Encoder tốt nhất; cần nhiều VRAM.
+  - [`google/rembert`](https://www.kaggle.com/models/aisuko/rembert/Transformers/default)
+    — Đa ngôn ngữ; khuyến nghị batch size 8.
+
+  **Encoder chuyên về an toàn**
+
+  - [`protectai/deberta-v3-base-prompt-injection-v2`](https://www.kaggle.com/models/aisuko/deberta-v3-base-prompt-injection-v2/Transformers/default)
+    — Đã học sẵn prompt injection.
+  - [`patronus-studio/wolf-defender-prompt-injection`](https://www.kaggle.com/models/aisuko/wolf-defender-prompt-injection/Transformers/default)
+    — Đã học sẵn prompt injection.
+
+  **LLM (fine-tuning / LoRA)**
+
+  - [`ibm-granite/granite-3.3-2b-instruct`](https://www.kaggle.com/models/aisuko/granite-3.3-2b-instruct/Transformers/default)
+    — Fine-tuning / LoRA.
+  - [`mistralai/Mistral-7B-Instruct-v0.3`](https://www.kaggle.com/models/aisuko/mistral-7b-instruct-v0.3/Transformers/default)
+    — Fine-tuning / LoRA.
+
+- 🚨 **Tên notebook:** `<university>_<campus>_<team>_C1` (ví dụ:
+  `RMIT_SGS_<team>_C1`).
+
+### Quy tắc bắt buộc
+
+- ❌ **Không sửa hoặc ghi đè `data/raw/`:** Chỉ đọc (`read-only`). Lưu dữ
+  liệu đã xử lý và `folds.csv` vào `data/processed/`.
+- ❌ **Không xóa dấu câu hoặc ký tự Unicode** của các ngôn ngữ Romance
+  (`pt`, `fr`, `it`) một cách mù quáng. Không dùng regex `[^a-zA-Z0-9]`;
+  luôn dùng `src/data_loader.py:clean_text_safety()`.
+- ❌ **Không hardcode API keys hoặc Kaggle tokens:** Đọc qua `os.getenv()`
+  từ `.env` hoặc `kaggle_secrets`.
+- ❌ **Không sửa notebook (`.ipynb`) của thành viên khác:** Mỗi thành viên
+  làm việc trên notebook riêng (`notebooks/01_<ten>_<task>.ipynb`).
+- ✅ **Luôn kiểm tra file nộp bằng `validate_submission()`:** Đảm bảo đúng
+  tên cột (`id`, `label`), đủ 6,000 dòng khớp `test.csv`, không có `NaN`, và
+  nhãn thuộc `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}`.
 
 ---
 
@@ -128,15 +150,16 @@ Read [`AGENTS.md`](file:///d:/Code/rmit-hackathon-2026/AGENTS.md) first before g
 
 - **Địa điểm:** RMIT Saigon South Campus, 702 Nguyễn Văn Linh, Tân Hưng,
   Q.7, TP.HCM.
+
 - **Lịch trình Day 1 (Thứ Năm, 22/10/2026):**
   - `08:15–09:00`: **Check-in theo cả team tại Sảnh Building 2**
     *(Cả đội phải có mặt cùng lúc trước 9:00 AM, trễ sẽ bị loại hoặc trừ 10%
     tổng điểm.)*
-  - `09:30 – 10:00`: Briefing & rà soát quy chế.
+  - `09:30–10:00`: Briefing & rà soát quy chế.
   - `10:00–12:00`: Challenge Session 1 — Chốt điểm CV 5-Fold cho Baseline
     3-class, LightGBM đa ngôn ngữ và các fold đầu của DeBERTa/XLM-R; thực
     hiện lượt nộp mở hàng có kiểm soát (Submission #1/6).
-  - `12:00 – 13:00`: Nghỉ ăn trưa.
+  - `12:00–13:00`: Nghỉ ăn trưa.
   - `13:00–16:30`: Challenge Session 2 — Tinh chỉnh Feature Engineering
     (`pt, fr, it, en`), hoàn tất OOF `(14000, 3)` từ các Approved Models,
     chạy Blending và tối ưu ngưỡng lớp `optimize_class_multipliers` cho
