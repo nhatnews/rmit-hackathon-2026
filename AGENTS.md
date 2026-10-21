@@ -20,38 +20,45 @@ Applies to Antigravity, Cursor, Copilot, Claude Code, Windsurf, and all team mem
   - **Text length:** Prompts range from short snippets up to **~18,550 characters**.
 - **Critical Competition Constraints:**
   - **Submission quota:** **Maximum 6 attempts total** for the entire competition across the whole team. Never submit unverified files.
-  - **Approved models only:** Any pretrained neural backbone **must** come from the official Kaggle Models whitelist approved by the organizers. **No other pretrained backbone is allowed.**
-    1. **Safety-Tuned Encoders (High Priority for Prompt Injection):**
-       - `protectai/deberta-v3-base-prompt-injection-v2` — pre-trained specifically on prompt injection & jailbreak.
-       - `patronus-studio/wolf-defender-prompt-injection` — security-tuned safety classifier.
-    2. **Multilingual Encoders (High Priority for Romance Languages):**
-       - `FacebookAI/xlm-roberta-base` — strong, balanced multilingual encoder (reliable, fast).
-       - `FacebookAI/xlm-roberta-large` — strongest multilingual representation; requires batch size 4-8 + FP16.
-       - `jhu-clsp/mmBERT-base` — fast, modern multilingual encoder.
-       - `jhu-clsp/mmBERT-small` — ultra-fast multilingual encoder.
-       - `distilbert/distilbert-base-multilingual-cased` — fastest transformer baseline.
-       - `google/rembert` — 32-layer multilingual architecture; recommend batch size 8.
-    3. **LLMs (LoRA / Fine-Tuning):**
-       - `ibm-granite/granite-3.3-2b-instruct` — 2B parameter instruct model.
-       - `mistralai/Mistral-7B-Instruct-v0.3` — 7B parameter instruct model.
-    4. **Classical Tabular / Linear ML:**
-       - `TF-IDF + Ridge/LinearSVC/LightGBM` (baseline provided in `src/models.py`, OOF Macro-F1 = `0.9332`).
-  - **Notebook requirement:** State the chosen model at the top of the Kaggle notebook (e.g. `# Model: protectai/deberta-v3-base-prompt-injection-v2`).
+  - **STRICT SINGLE-MODEL MANDATE (BẮT BUỘC CHỈ DÙNG 1 MODEL DUY NHẤT):**
+    - **Official Rule:** *"You must build your solution on one of the following approved models. They are all open-source-licence safe and provided to you as a Kaggle dataset — no other pretrained backbone is allowed."*
+    - **Exactly ONE Approved Model:** Every submission and final solution **MUST** be built using **strictly ONE** approved pretrained backbone from the whitelist below.
+    - **NO Multi-Backbone Ensembling / Blending:** Ensembling, blending, or stacking across different pretrained models (e.g., blending `DeBERTa` with `XLM-RoBERTa`) is **strictly PROHIBITED**. K-fold checkpoint averaging of the *same* single model backbone is permissible, but combining different backbones violates competition constraints.
+    - **Approved models whitelist (all open-source-licence safe & provided as Kaggle datasets):**
+      1. **Safety-Tuned Encoders (High Priority for Prompt Injection):**
+         - `protectai/deberta-v3-base-prompt-injection-v2` — pre-trained specifically on prompt injection & jailbreak.
+         - `patronus-studio/wolf-defender-prompt-injection` — security-tuned safety classifier.
+      2. **Multilingual Encoders (High Priority for Romance Languages):**
+         - `FacebookAI/xlm-roberta-base` — strong, balanced multilingual encoder (reliable, fast).
+         - `FacebookAI/xlm-roberta-large` — strongest multilingual representation; requires batch size 4-8 + FP16.
+         - `jhu-clsp/mmBERT-base` — fast, modern multilingual encoder.
+         - `jhu-clsp/mmBERT-small` — ultra-fast multilingual encoder.
+         - `distilbert/distilbert-base-multilingual-cased` — fastest transformer baseline.
+         - `google/rembert` — 32-layer multilingual architecture; recommend batch size 8.
+      3. **LLMs (LoRA / Fine-Tuning):**
+         - `ibm-granite/granite-3.3-2b-instruct` — 2B parameter instruct model.
+         - `mistralai/Mistral-7B-Instruct-v0.3` — 7B parameter instruct model.
+      4. **Classical Tabular / Linear ML:**
+         - `TF-IDF + Ridge/LinearSVC/LightGBM` (baseline provided in `src/models.py`, OOF Macro-F1 = `0.9332`).
+  - **Notebook requirement:** State the chosen single model at the top of the Kaggle notebook (e.g. `# Model: protectai/deberta-v3-base-prompt-injection-v2`).
   - **Notebook naming:** `<university>_<campus>_<team>_C1` (e.g. `RMIT_SGS_<team>_C1`).
 
 ---
 
-## 2. Core Operating Model: Parallel Model Exploration with Strict Quota Governance
+## 2. Core Operating Model: Parallel Single-Model Exploration with Strict Quota Governance
 
-1. **Parallel Model Building:**
+1. **Parallel Model Exploration (Select Champion Single Model):**
    - Any team member can choose and fine-tune any model from the official 10 Approved Models list.
    - All models use the unified starter template (`notebooks/template_train_approved_model.ipynb`) with plug-and-play `MODEL_NAME`.
+   - The team trains different approved models independently to compare 5-Fold Macro-F1 and select the **single champion model**.
+   - **Do NOT ensemble or blend predictions from different model backbones.**
 2. **Unified Evaluation Benchmark (Fair Comparison):**
    - Every model **must** evaluate on the shared 5-Fold split (`data/processed/folds.csv`).
    - Checkpoints and model decisions are ranked strictly by **Macro-F1** (not accuracy or cross-entropy loss).
 3. **Strict Quota Gatekeeper (Nhật Tân):**
    - All submissions to Kaggle are reviewed and submitted by **Nhật Tân**.
    - Before submission, verify:
+     - **Single-model compliance:** Built strictly on ONE approved model (no multi-model ensembling).
      - `src/utils.py:validate_submission(sub_df)` passes with (6000, 2) shape and valid labels.
      - Label distribution on `test.csv`: `BENIGN` ~58-65%, `JAILBREAK` ~28-34%, `PROMPT_INJECTION` ~5-10%.
      - Target allocation: Max 3-4 submissions during Session 1 (morning), reserving at least 2 submissions for final optimizations in the afternoon.
@@ -60,6 +67,7 @@ Applies to Antigravity, Cursor, Copilot, Claude Code, Windsurf, and all team mem
 
 ## 3. Strict Technical Guardrails (Zero Exceptions)
 
+- **Strict Single-Model Rule:** Every submission and pipeline must use strictly ONE approved model backbone. Never blend or ensemble different pretrained backbones.
 - **Never modify or overwrite `data/raw/`.** It is strictly read-only.
 - **Preserve Romance diacritics and adversarial Unicode.** Never use destructive ASCII regex such as `re.sub(r'[^a-zA-Z0-9]', ' ', text)`. Always use `src/data_loader.py:clean_text_safety()`.
 - **Never hardcode secrets.** Retrieve tokens via `os.getenv()` or `kaggle_secrets`.
@@ -71,9 +79,11 @@ Applies to Antigravity, Cursor, Copilot, Claude Code, Windsurf, and all team mem
 
 ## 4. Submission Checklist (Before Any Kaggle Attempt)
 
-1. [ ] Saved in `submissions/<name>.csv` with exact columns: `id` and `label`.
-2. [ ] Row count matches `test.csv` (**exactly 6,000 rows**).
-3. [ ] No `NaN`, null, or empty string values.
-4. [ ] Every label belongs to `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}` (no integer codes `0, 1, 2`).
-5. [ ] Predicted distribution contains reasonable `PROMPT_INJECTION` (~5%–10%).
-6. [ ] Approved by Nhật Tân and recorded in the submission log.
+1. [ ] Built on **strictly ONE** approved model backbone (no cross-model ensembling / blending).
+2. [ ] Stated `# Model: <model_name>` at line 1 of the Kaggle notebook.
+3. [ ] Saved in `submissions/<name>.csv` with exact columns: `id` and `label`.
+4. [ ] Row count matches `test.csv` (**exactly 6,000 rows**).
+5. [ ] No `NaN`, null, or empty string values.
+6. [ ] Every label belongs to `{'BENIGN', 'JAILBREAK', 'PROMPT_INJECTION'}` (no integer codes `0, 1, 2`).
+7. [ ] Predicted distribution contains reasonable `PROMPT_INJECTION` (~5%–10%).
+8. [ ] Approved by Nhật Tân and recorded in the submission log.
