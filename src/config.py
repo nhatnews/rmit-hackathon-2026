@@ -44,7 +44,10 @@ MODELS_DIR = BASE_DIR / "models"
 
 # Ensure output directories exist
 for directory in [DATA_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, NOTEBOOKS_DIR, SUBMISSIONS_DIR, DOCS_DIR, MODELS_DIR]:
-    directory.mkdir(parents=True, exist_ok=True)
+    try:
+        directory.mkdir(parents=True, exist_ok=True)
+    except OSError:
+        pass  # Read-only filesystem (e.g. src uploaded as Kaggle dataset)
 
 # Random Seed for Reproducibility
 RANDOM_SEED = int(os.getenv("RANDOM_SEED", 42))

@@ -7,6 +7,8 @@ from .config import BASE_DIR, RAW_DATA_DIR, PROCESSED_DATA_DIR, SUBMISSIONS_DIR,
 from .data_loader import load_raw_data, save_processed_data, clean_text_safety, extract_adversarial_features
 from .models import build_baseline_pipeline, BaselinePipeline, evaluate_cv
 from .utils import set_seed, validate_submission, save_submission, compute_metrics
+from .folds import make_folds, load_folds
+from .blend import blend, search_weights, best_threshold, corr_report
 
 __all__ = [
     "BASE_DIR",
@@ -25,4 +27,10 @@ __all__ = [
     "validate_submission",
     "save_submission",
     "compute_metrics",
+    "make_folds",
+    "load_folds",
+    "blend",
+    "search_weights",
+    "best_threshold",
+    "corr_report",
 ]

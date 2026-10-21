@@ -61,24 +61,34 @@ def compute_metrics(
     y_true = np.array(y_true)
     y_pred = np.array(y_pred)
 
+    # Multiclass-safe: 'binary' averaging only valid for <= 2 classes
+    is_multiclass = len(np.unique(np.concatenate([y_true, y_pred]))) > 2
+    avg = "macro" if is_multiclass else "binary"
+
     metrics = {
         "accuracy": float(accuracy_score(y_true, y_pred)),
         "f1_macro": float(f1_score(y_true, y_pred, average="macro", zero_division=0)),
-        "f1_binary": float(f1_score(y_true, y_pred, average="binary", zero_division=0)),
-        "precision": float(precision_score(y_true, y_pred, average="binary", zero_division=0)),
-        "recall": float(recall_score(y_true, y_pred, average="binary", zero_division=0)),
+        "f1_binary": float(f1_score(y_true, y_pred, average=avg, zero_division=0)),
+        "precision": float(precision_score(y_true, y_pred, average=avg, zero_division=0)),
+        "recall": float(recall_score(y_true, y_pred, average=avg, zero_division=0)),
     }
 
     if y_proba is not None:
         try:
-            # If 2D probability array is passed, extract positive class
-            if y_proba.ndim == 2 and y_proba.shape[1] == 2:
-                proba_pos = y_proba[:, 1]
+            y_proba = np.asarray(y_proba)
+            if is_multiclass and y_proba.ndim == 2:
+                metrics["roc_auc"] = float(
+                    roc_auc_score(y_true, y_proba, multi_class="ovr", labels=np.unique(y_true))
+                )
             else:
-                proba_pos = y_proba.ravel()
+                # If 2D probability array is passed, extract positive class
+                if y_proba.ndim == 2 and y_proba.shape[1] == 2:
+                    proba_pos = y_proba[:, 1]
+                else:
+                    proba_pos = y_proba.ravel()
 
-            metrics["roc_auc"] = float(roc_auc_score(y_true, proba_pos))
-            metrics["log_loss"] = float(log_loss(y_true, proba_pos))
+                metrics["roc_auc"] = float(roc_auc_score(y_true, proba_pos))
+                metrics["log_loss"] = float(log_loss(y_true, proba_pos))
         except Exception as e:
             metrics["roc_auc_error"] = str(e)
 
@@ -101,13 +111,17 @@ def validate_submission(
     if missing_cols:
         raise ValueError(f"Submission missing required columns: {missing_cols}. Current columns: {list(sub_df.columns)}")
 
-    # 2. Check for NaN / null / inf
+    # 2. Check for NaN / null / inf / duplicate ids
     if sub_df.isna().any().any():
         nan_summary = sub_df.isna().sum().to_dict()
         raise ValueError(f"Submission contains NaN values: {nan_summary}")
 
-    if np.isinf(sub_df[target_col]).any():
+    is_numeric_target = pd.api.types.is_numeric_dtype(sub_df[target_col])
+    if is_numeric_target and np.isinf(sub_df[target_col]).any():
         raise ValueError("Submission contains infinite (inf / -inf) values in target column.")
+
+    if sub_df[id_col].duplicated().any():
+        raise ValueError(f"Submission has {int(sub_df[id_col].duplicated().sum())} duplicated '{id_col}' values.")
 
     # 3. Check against test_df if provided
     if test_df is not None:
@@ -118,23 +132,31 @@ def validate_submission(
             )
         
         if id_col in test_df.columns:
-            if not (sub_df[id_col].values == test_df[id_col].values).all():
+            if not (sub_df[id_col].astype(str).values == test_df[id_col].astype(str).values).all():
                 raise ValueError(f"Submission '{id_col}' values do not exactly match test.csv '{id_col}' values in order!")
 
     # 4. Check target value bounds
     target_vals = sub_df[target_col].values
     if is_probability:
+        if not is_numeric_target:
+            raise ValueError("Probability submission must have a numeric target column.")
         min_val, max_val = float(np.min(target_vals)), float(np.max(target_vals))
         if min_val < 0.0 or max_val > 1.0:
             raise ValueError(
                 f"Probability submission out of bounds [0.0, 1.0]! "
                 f"Min={min_val:.4f}, Max={max_val:.4f}"
             )
+        if float(np.std(target_vals)) < 1e-9:
+            raise ValueError("Probability submission is constant - model/pipeline bug suspected.")
     else:
-        unique_vals = set(np.unique(target_vals))
-        # Ensure target values are valid labels
-        if not unique_vals.issubset({0, 1}) and not all(isinstance(v, (int, np.integer)) for v in unique_vals):
-            print(f"[Warning] Target contains non-binary discrete values: {unique_vals}. Verify if problem is multiclass.")
+        # Label mode: numeric values must be integer-valued (catches probabilities sent as labels)
+        if is_numeric_target and not np.all(np.mod(target_vals, 1) == 0):
+            raise ValueError(
+                "Label submission contains non-integer values (looks like probabilities). "
+                "Use is_probability=True or threshold the predictions."
+            )
+        if len(np.unique(target_vals)) < 2:
+            print("[Warning] Label submission contains a single unique value.")
 
     print(f"[VALIDATION PASSED] Submission valid: {len(sub_df):,} rows, columns: [{id_col}, {target_col}]")
     return True
