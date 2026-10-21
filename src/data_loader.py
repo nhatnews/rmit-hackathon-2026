@@ -17,19 +17,34 @@ from typing import Optional, Union
 from .config import RAW_DATA_DIR, PROCESSED_DATA_DIR
 
 
-def load_raw_data(filename: str = "train.csv") -> pd.DataFrame:
+def load_raw_data(filename: Union[str, Path] = "train.csv") -> pd.DataFrame:
     """
-    Loads raw data file from data/raw/ directory in read-only mode.
+    Loads raw data file from data/raw/ directory in read-only mode,
+    or directly from a specific file path if provided.
     """
-    file_path = RAW_DATA_DIR / filename
+    path_obj = Path(filename)
+    file_path = path_obj if path_obj.is_file() else (RAW_DATA_DIR / filename)
     if not file_path.exists():
         raise FileNotFoundError(
             f"Raw data file not found at: {file_path}.\n"
             f"Please download the dataset from Kaggle into {RAW_DATA_DIR}/"
         )
     
-    # Read CSV
-    df = pd.read_csv(file_path)
+    # Read by extension. keep_default_na=False so prompts like "NA"/"null"/"None"
+    # are not silently turned into NaN; ids kept as strings (e.g. "007").
+    suffix = file_path.suffix.lower()
+    if suffix in (".jsonl", ".ndjson"):
+        df = pd.read_json(file_path, lines=True)
+    elif suffix == ".json":
+        df = pd.read_json(file_path)
+    elif suffix == ".parquet":
+        df = pd.read_parquet(file_path)
+    else:
+        sep = "\t" if suffix == ".tsv" else ","
+        df = pd.read_csv(
+            file_path, sep=sep, encoding="utf-8-sig",
+            keep_default_na=False, na_values=[""], dtype={"id": str},
+        )
     print(f"[DataLoader] Loaded {len(df):,} rows from {file_path.name}")
     return df
 

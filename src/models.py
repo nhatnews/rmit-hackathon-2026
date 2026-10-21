@@ -46,6 +46,7 @@ def build_baseline_pipeline(
                 max_features=max_word_features,
                 sublinear_tf=True,
                 lowercase=False,  # Preserves case signal cleaned by clean_text_safety
+                token_pattern=r"(?u)\b\w+\b",  # keep 1-char tokens (VN: ở, à; teencode: k, j, z)
             ),
         ),
         (
@@ -77,7 +78,7 @@ def build_baseline_pipeline(
                 max_iter=1000,
                 random_state=random_state,
                 class_weight="balanced",
-                solver="liblinear",
+                solver="lbfgs",
             )
     else:
         clf = LogisticRegression(
@@ -85,7 +86,7 @@ def build_baseline_pipeline(
             max_iter=1000,
             random_state=random_state,
             class_weight="balanced",
-            solver="liblinear",
+            solver="lbfgs",
         )
 
     pipeline = Pipeline([
@@ -107,12 +108,18 @@ def evaluate_cv(
     n_splits: int = 5,
     classifier_type: str = "logistic_regression",
     random_state: int = RANDOM_SEED,
-) -> Tuple[np.ndarray, Dict[str, float]]:
+    test_df: Optional[pd.DataFrame] = None,
+    folds: Optional[np.ndarray] = None,
+) -> Union[Tuple[np.ndarray, Dict[str, float]], Tuple[np.ndarray, Dict[str, float], np.ndarray]]:
     """
     Performs Stratified K-Fold Cross-Validation on the training set.
+    `folds`: optional array of fold ids (one per row, e.g. from src.folds.load_folds) so all
+    team members share identical splits. `test_df`: if given, also returns the mean of the
+    fold models' test predictions (shape matches oof_preds).
     Returns:
-    - oof_preds: Out-of-fold probability predictions.
+    - oof_preds: Out-of-fold probabilities (1D for binary, 2D for multiclass).
     - oof_metrics: Overall evaluation metrics on out-of-fold predictions.
+    - test_pred: (only when test_df is given)
     """
     set_seed(random_state)
     skf = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=random_state)
@@ -120,11 +127,25 @@ def evaluate_cv(
     X = df[text_col].fillna("").astype(str).apply(clean_text_safety).values
     y = df[target_col].values
 
-    oof_preds = np.zeros(len(df), dtype=float)
+    classes = np.unique(y)
+    n_cls = len(classes)
+    shape = (len(df),) if n_cls <= 2 else (len(df), n_cls)
+    oof_preds = np.zeros(shape, dtype=float)
+    X_test = None
+    test_pred = None
+    if test_df is not None:
+        X_test = test_df[text_col].fillna("").astype(str).apply(clean_text_safety).values
+        test_pred = np.zeros((len(test_df),) if n_cls <= 2 else (len(test_df), n_cls), dtype=float)
     fold_scores = []
 
+    if folds is not None:
+        folds = np.asarray(folds)
+        split_iter = [(np.where(folds != f)[0], np.where(folds == f)[0]) for f in np.unique(folds)]
+    else:
+        split_iter = skf.split(X, y)
+
     print(f"\n[Cross-Validation] Starting {n_splits}-Fold CV with {classifier_type}...")
-    for fold, (train_idx, val_idx) in enumerate(skf.split(X, y), 1):
+    for fold, (train_idx, val_idx) in enumerate(split_iter, 1):
         X_train, y_train = X[train_idx], y[train_idx]
         X_val, y_val = X[val_idx], y[val_idx]
 
@@ -134,11 +155,15 @@ def evaluate_cv(
         )
         model.fit(X_train, y_train)
 
-        # Predict probability for positive class
-        proba_val = model.predict_proba(X_val)[:, 1]
+        # Predict probability (positive class for binary, full matrix for multiclass)
+        proba_all = model.predict_proba(X_val)
+        proba_val = proba_all[:, 1] if n_cls <= 2 else proba_all
         oof_preds[val_idx] = proba_val
+        if X_test is not None:
+            tp = model.predict_proba(X_test)
+            test_pred += (tp[:, 1] if n_cls <= 2 else tp) / len(split_iter)
 
-        pred_binary = (proba_val >= 0.5).astype(int)
+        pred_binary = (proba_val >= 0.5).astype(int) if n_cls <= 2 else model.classes_[proba_val.argmax(1)]
         metrics = compute_metrics(y_val, pred_binary, proba_val)
         fold_scores.append(metrics)
 
@@ -146,7 +171,7 @@ def evaluate_cv(
         print(f"Fold {fold}/{n_splits} | F1: {metrics['f1_binary']:.4f} | {auc_str} | Acc: {metrics['accuracy']:.4f}")
 
     # Overall OOF metrics
-    oof_binary = (oof_preds >= 0.5).astype(int)
+    oof_binary = (oof_preds >= 0.5).astype(int) if n_cls <= 2 else classes[oof_preds.argmax(1)]
     overall_metrics = compute_metrics(y, oof_binary, oof_preds)
     print("\n--- [Overall Out-of-Fold Metrics] ---")
     for k, v in overall_metrics.items():
@@ -155,6 +180,8 @@ def evaluate_cv(
         else:
             print(f"  {k:15s}: {v}")
 
+    if test_pred is not None:
+        return oof_preds, overall_metrics, test_pred
     return oof_preds, overall_metrics
 
 
