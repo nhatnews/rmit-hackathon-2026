@@ -1,0 +1,42 @@
+{
+  "model_name": "google/rembert",
+  "version_tag": "V5",
+  "folds_done": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "n_oof_rows": 11200,
+  "oof_macro_f1_base": 0.9657535286498184,
+  "oof_errors_base": 309,
+  "oof_macro_f1_nested_tuned": 0.9655525589211734,
+  "oof_macro_f1_tuned_insample": 0.9653716210096926,
+  "chosen_postproc_rule": "pure_argmax",
+  "mJ": 0.85,
+  "mPI": {
+    "pt": 1.025,
+    "fr": 1.025,
+    "it": 1.2,
+    "en": 1.025
+  },
+  "test_label_dist": {
+    "BENIGN": 0.6243,
+    "JAILBREAK": 0.3083,
+    "PROMPT_INJECTION": 0.0673
+  },
+  "oof_macro_f1_tuned": 0.9657535286498184,
+  "per_language_f1": {
+    "pt": 0.9608426586761049,
+    "fr": 0.9753675333656399,
+    "it": 0.9694398192127706,
+    "en": 0.9559086611518416
+  },
+  "ref_v2_argmax_f03": 0.96473,
+  "ref_v3_argmax_f03": 0.96498,
+  "per_class_f1_base": {
+    "BENIGN": 0.978509307841587,
+    "JAILBREAK": 0.96414686825054,
+    "PROMPT_INJECTION": 0.9546044098573282
+  }
+}

@@ -1,0 +1,17 @@
+
+======================================================================
+>>> [BẮT ĐẦU FOLD 4] 
+======================================================================
+[*] Đang tải backbone RemBERT từ: /kaggle/input/models/aisuko/rembert/transformers/default/1 (seed=46)
+[*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+[Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+[Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+[Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+[Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+[Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+[Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9676 | BENIGN: 0.9784 | JAILBREAK: 0.9648 | PROMPT_INJECTION: 0.9596
+[Eval Ep 4 Step 1400/1400] Val Macro-F1: 0.9679 | BENIGN: 0.9787 | JAILBREAK: 0.9654 | PROMPT_INJECTION: 0.9596
+[*] Đang tải checkpoint tốt nhất (epoch_3_step_1400, Macro-F1: 0.9700) từ /tmp/best_fold4.pt...
+[*] Đang sinh OOF probabilities cho Fold 4...
+[*] Đang sinh Test probabilities cho Fold 4...
+[HOÀN THÀNH FOLD 4] Best F1: 0.9700 | Thời gian: 56.9 phút | VRAM: 10.75 GB
