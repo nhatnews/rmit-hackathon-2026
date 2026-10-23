@@ -1,0 +1,946 @@
+6.9s 1 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+6.9s 2 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+6.9s 3 0.00s - to python to disable frozen modules.
+6.9s 4 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+7.5s 5 0.00s - Debugger warning: It seems that frozen modules are being used, which may
+7.5s 6 0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off
+7.5s 7 0.00s - to python to disable frozen modules.
+7.5s 8 0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.
+8.6s 9 [*] Cấu hình đã được ghi vào: /kaggle/working/config.json
+8.6s 10 [*] Backbone: google/rembert | Submit Mode: fold_avg
+8.6s 11 [*] SMOKE_TEST: False | Batch: 8x2=16 | LR: 1.5e-05 | LLRD: 0.965
+8.7s 12 Writing train_rembert.py
+8.7s 13 [*] SMOKE_TEST = False. Bỏ qua cell kiểm tra thử để sẵn sàng huấn luyện toàn bộ 5 fold.
+14.7s 14 [*] Phát hiện 2 GPU khả dụng trong phiên làm việc.
+14.7s 15 [*] Chế độ 2 GPU song song theo cấu hình GPU_FOLDS: {'0': [0, 2, 4], '1': [1, 3]}
+14.7s 16 [+] Đã khởi chạy GPU 0 (PID: 45) cho các fold ['0', '2', '4']
+14.7s 17 [+] Đã khởi chạy GPU 1 (PID: 46) cho các fold ['1', '3']
+14.7s 18 [*] Bắt đầu theo dõi tiến độ huấn luyện (cập nhật log mỗi 120 giây)...
+134.7s 19 
+134.7s 20 --- [Thời gian đã chạy: 2.0 phút] ---
+134.7s 21 > Process 0 (PID 45) - Trạng thái: Đang chạy
+134.7s 22 
+134.7s 23 Notes:
+134.7s 24 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+134.7s 25 > Process 1 (PID 46) - Trạng thái: Đang chạy
+134.7s 26 
+134.7s 27 Notes:
+134.7s 28 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+254.7s 29 
+254.7s 30 --- [Thời gian đã chạy: 4.0 phút] ---
+254.7s 31 > Process 0 (PID 45) - Trạng thái: Đang chạy
+254.7s 32 
+254.7s 33 Notes:
+254.7s 34 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+254.7s 35 > Process 1 (PID 46) - Trạng thái: Đang chạy
+254.7s 36 
+254.7s 37 Notes:
+254.7s 38 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+374.7s 39 
+374.7s 40 --- [Thời gian đã chạy: 6.0 phút] ---
+374.7s 41 > Process 0 (PID 45) - Trạng thái: Đang chạy
+374.7s 42 Notes:
+374.7s 43 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+374.7s 44 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+374.7s 45 > Process 1 (PID 46) - Trạng thái: Đang chạy
+374.7s 46 Notes:
+374.7s 47 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+374.7s 48 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+494.7s 49 
+494.7s 50 --- [Thời gian đã chạy: 8.0 phút] ---
+494.7s 51 > Process 0 (PID 45) - Trạng thái: Đang chạy
+494.7s 52 Notes:
+494.7s 53 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+494.7s 54 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+494.7s 55 > Process 1 (PID 46) - Trạng thái: Đang chạy
+494.7s 56 Notes:
+494.7s 57 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+494.7s 58 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+614.7s 59 
+614.7s 60 --- [Thời gian đã chạy: 10.0 phút] ---
+614.7s 61 > Process 0 (PID 45) - Trạng thái: Đang chạy
+614.7s 62 Notes:
+614.7s 63 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+614.7s 64 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+614.7s 65 > Process 1 (PID 46) - Trạng thái: Đang chạy
+614.7s 66 Notes:
+614.7s 67 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+614.7s 68 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+734.7s 69 
+734.7s 70 --- [Thời gian đã chạy: 12.0 phút] ---
+734.7s 71 > Process 0 (PID 45) - Trạng thái: Đang chạy
+734.7s 72 Notes:
+734.7s 73 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+734.7s 74 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+734.7s 75 > Process 1 (PID 46) - Trạng thái: Đang chạy
+734.7s 76 Notes:
+734.7s 77 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+734.7s 78 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+854.7s 79 
+854.7s 80 --- [Thời gian đã chạy: 14.0 phút] ---
+854.7s 81 > Process 0 (PID 45) - Trạng thái: Đang chạy
+854.7s 82 Notes:
+854.7s 83 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+854.7s 84 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+854.7s 85 > Process 1 (PID 46) - Trạng thái: Đang chạy
+854.7s 86 Notes:
+854.7s 87 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+854.7s 88 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+974.7s 89 
+974.7s 90 --- [Thời gian đã chạy: 16.0 phút] ---
+974.7s 91 > Process 0 (PID 45) - Trạng thái: Đang chạy
+974.7s 92 Notes:
+974.7s 93 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+974.7s 94 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+974.7s 95 > Process 1 (PID 46) - Trạng thái: Đang chạy
+974.7s 96 Notes:
+974.7s 97 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+974.7s 98 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1094.7s 99 
+1094.7s 100 --- [Thời gian đã chạy: 18.0 phút] ---
+1094.7s 101 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1094.7s 102 Notes:
+1094.7s 103 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1094.7s 104 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1094.7s 105 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1094.7s 106 Notes:
+1094.7s 107 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1094.7s 108 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1214.7s 109 
+1214.7s 110 --- [Thời gian đã chạy: 20.0 phút] ---
+1214.7s 111 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1214.7s 112 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1214.7s 113 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1214.7s 114 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1214.7s 115 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1214.7s 116 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1214.7s 117 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1214.7s 118 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1334.8s 119 
+1334.8s 120 --- [Thời gian đã chạy: 22.0 phút] ---
+1334.8s 121 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1334.8s 122 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1334.8s 123 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1334.8s 124 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1334.8s 125 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1334.8s 126 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1334.8s 127 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1334.8s 128 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1454.8s 129 
+1454.8s 130 --- [Thời gian đã chạy: 24.0 phút] ---
+1454.8s 131 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1454.8s 132 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1454.8s 133 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1454.8s 134 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1454.8s 135 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1454.8s 136 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1454.8s 137 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1454.8s 138 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1574.8s 139 
+1574.8s 140 --- [Thời gian đã chạy: 26.0 phút] ---
+1574.8s 141 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1574.8s 142 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+1574.8s 143 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1574.8s 144 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1574.8s 145 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1574.8s 146 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1574.8s 147 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1574.8s 148 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+1694.8s 149 
+1694.8s 150 --- [Thời gian đã chạy: 28.0 phút] ---
+1694.8s 151 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1694.8s 152 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1694.8s 153 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1694.8s 154 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+1694.8s 155 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1694.8s 156 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1694.8s 157 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1694.8s 158 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+1814.8s 159 
+1814.8s 160 --- [Thời gian đã chạy: 30.0 phút] ---
+1814.8s 161 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1814.8s 162 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1814.8s 163 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1814.8s 164 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+1814.8s 165 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1814.8s 166 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1814.8s 167 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1814.8s 168 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+1934.8s 169 
+1934.8s 170 --- [Thời gian đã chạy: 32.0 phút] ---
+1934.8s 171 > Process 0 (PID 45) - Trạng thái: Đang chạy
+1934.8s 172 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1934.8s 173 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+1934.8s 174 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+1934.8s 175 > Process 1 (PID 46) - Trạng thái: Đang chạy
+1934.8s 176 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+1934.8s 177 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+1934.8s 178 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2054.8s 179 
+2054.8s 180 --- [Thời gian đã chạy: 34.0 phút] ---
+2054.8s 181 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2054.8s 182 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+2054.8s 183 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2054.8s 184 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2054.8s 185 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2054.8s 186 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+2054.8s 187 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2054.8s 188 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2174.8s 189 
+2174.8s 190 --- [Thời gian đã chạy: 36.0 phút] ---
+2174.8s 191 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2174.8s 192 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+2174.8s 193 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2174.8s 194 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2174.8s 195 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2174.8s 196 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+2174.8s 197 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2174.8s 198 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2294.8s 199 
+2294.8s 200 --- [Thời gian đã chạy: 38.0 phút] ---
+2294.8s 201 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2294.8s 202 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9499 | BENIGN: 0.9648 | JAILBREAK: 0.9372 | PROMPT_INJECTION: 0.9476
+2294.8s 203 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2294.8s 204 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2294.8s 205 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2294.8s 206 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+2294.8s 207 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2294.8s 208 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2414.8s 209 
+2414.8s 210 --- [Thời gian đã chạy: 40.0 phút] ---
+2414.8s 211 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2414.8s 212 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2414.8s 213 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2414.8s 214 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+2414.8s 215 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2414.8s 216 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2414.8s 217 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2414.8s 218 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+2534.8s 219 
+2534.8s 220 --- [Thời gian đã chạy: 42.0 phút] ---
+2534.8s 221 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2534.8s 222 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2534.8s 223 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2534.8s 224 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+2534.8s 225 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2534.8s 226 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2534.8s 227 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2534.8s 228 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+2654.8s 229 
+2654.8s 230 --- [Thời gian đã chạy: 44.0 phút] ---
+2654.8s 231 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2654.8s 232 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2654.8s 233 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2654.8s 234 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+2654.8s 235 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2654.8s 236 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2654.8s 237 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2654.8s 238 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+2774.8s 239 
+2774.8s 240 --- [Thời gian đã chạy: 46.0 phút] ---
+2774.8s 241 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2774.8s 242 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9715 | JAILBREAK: 0.9541 | PROMPT_INJECTION: 0.9440
+2774.8s 243 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2774.8s 244 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+2774.8s 245 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2774.8s 246 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+2774.8s 247 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2774.8s 248 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+2894.8s 249 
+2894.8s 250 --- [Thời gian đã chạy: 48.0 phút] ---
+2894.8s 251 > Process 0 (PID 45) - Trạng thái: Đang chạy
+2894.8s 252 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+2894.8s 253 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+2894.8s 254 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+2894.8s 255 > Process 1 (PID 46) - Trạng thái: Đang chạy
+2894.8s 256 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+2894.8s 257 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+2894.8s 258 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+3014.8s 259 
+3014.8s 260 --- [Thời gian đã chạy: 50.0 phút] ---
+3014.8s 261 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3014.8s 262 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+3014.8s 263 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+3014.8s 264 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+3014.8s 265 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3014.8s 266 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+3014.8s 267 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+3014.8s 268 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+3134.8s 269 
+3134.8s 270 --- [Thời gian đã chạy: 52.0 phút] ---
+3134.8s 271 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3134.8s 272 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9513 | BENIGN: 0.9661 | JAILBREAK: 0.9388 | PROMPT_INJECTION: 0.9490
+3134.8s 273 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+3134.8s 274 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+3134.8s 275 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3134.8s 276 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+3134.8s 277 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+3134.8s 278 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+3254.8s 279 
+3254.8s 280 --- [Thời gian đã chạy: 54.0 phút] ---
+3254.9s 281 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3254.9s 282 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+3254.9s 283 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+3254.9s 284 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9648 | BENIGN: 0.9782 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9514
+3254.9s 285 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3254.9s 286 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+3254.9s 287 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+3254.9s 288 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9587 | BENIGN: 0.9741 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9436
+3374.9s 289 
+3374.9s 290 --- [Thời gian đã chạy: 56.0 phút] ---
+3374.9s 291 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3374.9s 292 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+3374.9s 293 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+3374.9s 294 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9648 | BENIGN: 0.9782 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9514
+3374.9s 295 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3374.9s 296 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+3374.9s 297 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+3374.9s 298 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9587 | BENIGN: 0.9741 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9436
+3494.9s 299 
+3494.9s 300 --- [Thời gian đã chạy: 58.0 phút] ---
+3494.9s 301 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3494.9s 302 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+3494.9s 303 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+3494.9s 304 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9648 | BENIGN: 0.9782 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9514
+3494.9s 305 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3494.9s 306 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+3494.9s 307 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+3494.9s 308 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9587 | BENIGN: 0.9741 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9436
+3614.9s 309 
+3614.9s 310 --- [Thời gian đã chạy: 60.0 phút] ---
+3614.9s 311 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3614.9s 312 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9749 | JAILBREAK: 0.9622 | PROMPT_INJECTION: 0.9387
+3614.9s 313 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9660 | BENIGN: 0.9787 | JAILBREAK: 0.9652 | PROMPT_INJECTION: 0.9541
+3614.9s 314 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9648 | BENIGN: 0.9782 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9514
+3614.9s 315 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3614.9s 316 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9587 | BENIGN: 0.9741 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9436
+3614.9s 317 [Eval Ep 4 Step 1400/1400] Val Macro-F1: 0.9605 | BENIGN: 0.9747 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9482
+3614.9s 318 [*] Đang tải checkpoint tốt nhất (epoch_3_step_700, Macro-F1: 0.9615) từ /tmp/best_fold1.pt...
+3734.9s 319 
+3734.9s 320 --- [Thời gian đã chạy: 62.0 phút] ---
+3734.9s 321 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3734.9s 322 [*] Đang tải checkpoint tốt nhất (epoch_4_step_1400, Macro-F1: 0.9661) từ /tmp/best_fold0.pt...
+3734.9s 323 [*] Đang sinh OOF probabilities cho Fold 0...
+3734.9s 324 [*] Đang sinh Test probabilities cho Fold 0...
+3734.9s 325 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3734.9s 326 Notes:
+3734.9s 327 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+3734.9s 328 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+3854.9s 329 
+3854.9s 330 --- [Thời gian đã chạy: 64.0 phút] ---
+3854.9s 331 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3854.9s 332 Notes:
+3854.9s 333 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+3854.9s 334 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+3854.9s 335 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3854.9s 336 Notes:
+3854.9s 337 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+3854.9s 338 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+3974.9s 339 
+3974.9s 340 --- [Thời gian đã chạy: 66.0 phút] ---
+3974.9s 341 > Process 0 (PID 45) - Trạng thái: Đang chạy
+3974.9s 342 Notes:
+3974.9s 343 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+3974.9s 344 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+3974.9s 345 > Process 1 (PID 46) - Trạng thái: Đang chạy
+3974.9s 346 Notes:
+3974.9s 347 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+3974.9s 348 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4094.9s 349 
+4094.9s 350 --- [Thời gian đã chạy: 68.0 phút] ---
+4094.9s 351 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4094.9s 352 Notes:
+4094.9s 353 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4094.9s 354 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4094.9s 355 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4094.9s 356 Notes:
+4094.9s 357 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4094.9s 358 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4214.9s 359 
+4214.9s 360 --- [Thời gian đã chạy: 70.0 phút] ---
+4214.9s 361 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4214.9s 362 Notes:
+4214.9s 363 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4214.9s 364 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4214.9s 365 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4214.9s 366 Notes:
+4214.9s 367 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4214.9s 368 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4334.9s 369 
+4334.9s 370 --- [Thời gian đã chạy: 72.0 phút] ---
+4334.9s 371 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4334.9s 372 Notes:
+4334.9s 373 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4334.9s 374 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4334.9s 375 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4334.9s 376 Notes:
+4334.9s 377 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4334.9s 378 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4454.9s 379 
+4454.9s 380 --- [Thời gian đã chạy: 74.0 phút] ---
+4454.9s 381 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4454.9s 382 Notes:
+4454.9s 383 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4454.9s 384 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4454.9s 385 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4454.9s 386 Notes:
+4454.9s 387 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4454.9s 388 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4574.9s 389 
+4574.9s 390 --- [Thời gian đã chạy: 76.0 phút] ---
+4574.9s 391 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4574.9s 392 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4574.9s 393 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4574.9s 394 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+4574.9s 395 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4574.9s 396 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4574.9s 397 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4574.9s 398 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+4694.9s 399 
+4694.9s 400 --- [Thời gian đã chạy: 78.0 phút] ---
+4694.9s 401 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4694.9s 402 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4694.9s 403 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4694.9s 404 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+4694.9s 405 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4694.9s 406 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4694.9s 407 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4694.9s 408 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+4814.9s 409 
+4814.9s 410 --- [Thời gian đã chạy: 80.0 phút] ---
+4814.9s 411 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4814.9s 412 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4814.9s 413 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4814.9s 414 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+4814.9s 415 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4814.9s 416 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4814.9s 417 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4814.9s 418 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+4934.9s 419 
+4934.9s 420 --- [Thời gian đã chạy: 82.0 phút] ---
+4934.9s 421 > Process 0 (PID 45) - Trạng thái: Đang chạy
+4934.9s 422 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+4934.9s 423 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4934.9s 424 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+4934.9s 425 > Process 1 (PID 46) - Trạng thái: Đang chạy
+4934.9s 426 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+4934.9s 427 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+4934.9s 428 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5055.0s 429 
+5055.0s 430 --- [Thời gian đã chạy: 84.0 phút] ---
+5055.0s 431 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5055.0s 432 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+5055.0s 433 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5055.0s 434 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5055.0s 435 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5055.0s 436 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+5055.0s 437 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+5055.0s 438 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5175.0s 439 
+5175.0s 440 --- [Thời gian đã chạy: 86.0 phút] ---
+5175.0s 441 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5175.0s 442 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+5175.0s 443 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5175.0s 444 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5175.0s 445 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5175.0s 446 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+5175.0s 447 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+5175.0s 448 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5295.0s 449 
+5295.0s 450 --- [Thời gian đã chạy: 88.0 phút] ---
+5295.0s 451 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5295.0s 452 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+5295.0s 453 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5295.0s 454 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5295.0s 455 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5295.0s 456 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+5295.0s 457 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+5295.0s 458 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5415.0s 459 
+5415.0s 460 --- [Thời gian đã chạy: 90.0 phút] ---
+5415.0s 461 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5415.0s 462 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5415.0s 463 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5415.0s 464 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+5415.0s 465 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5415.0s 466 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+5415.0s 467 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5415.0s 468 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+5535.0s 469 
+5535.0s 470 --- [Thời gian đã chạy: 92.0 phút] ---
+5535.0s 471 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5535.0s 472 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5535.0s 473 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5535.0s 474 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+5535.0s 475 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5535.0s 476 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+5535.0s 477 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5535.0s 478 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+5655.0s 479 
+5655.0s 480 --- [Thời gian đã chạy: 94.0 phút] ---
+5655.0s 481 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5655.0s 482 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5655.0s 483 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5655.0s 484 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+5655.0s 485 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5655.0s 486 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+5655.0s 487 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5655.0s 488 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+5775.0s 489 
+5775.0s 490 --- [Thời gian đã chạy: 96.0 phút] ---
+5775.0s 491 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5775.0s 492 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9395 | BENIGN: 0.9656 | JAILBREAK: 0.9451 | PROMPT_INJECTION: 0.9077
+5775.0s 493 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5775.0s 494 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+5775.0s 495 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5775.0s 496 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5775.0s 497 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+5775.0s 498 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+5895.0s 499 
+5895.0s 500 --- [Thời gian đã chạy: 98.0 phút] ---
+5895.0s 501 > Process 0 (PID 45) - Trạng thái: Đang chạy
+5895.0s 502 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+5895.0s 503 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+5895.0s 504 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+5895.0s 505 > Process 1 (PID 46) - Trạng thái: Đang chạy
+5895.0s 506 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+5895.0s 507 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+5895.0s 508 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6015.0s 509 
+6015.0s 510 --- [Thời gian đã chạy: 100.0 phút] ---
+6015.0s 511 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6015.0s 512 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+6015.0s 513 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+6015.0s 514 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6015.0s 515 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6015.0s 516 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+6015.0s 517 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+6015.0s 518 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6135.0s 519 
+6135.0s 520 --- [Thời gian đã chạy: 102.0 phút] ---
+6135.0s 521 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6135.0s 522 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9588 | BENIGN: 0.9736 | JAILBREAK: 0.9551 | PROMPT_INJECTION: 0.9476
+6135.0s 523 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+6135.0s 524 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6135.0s 525 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6135.0s 526 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+6135.0s 527 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+6135.0s 528 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6255.0s 529 
+6255.0s 530 --- [Thời gian đã chạy: 104.0 phút] ---
+6255.0s 531 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6255.0s 532 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+6255.0s 533 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6255.0s 534 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6255.0s 535 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6255.0s 536 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+6255.0s 537 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6255.0s 538 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+6375.0s 539 
+6375.0s 540 --- [Thời gian đã chạy: 106.0 phút] ---
+6375.0s 541 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6375.0s 542 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+6375.0s 543 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6375.0s 544 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6375.0s 545 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6375.0s 546 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+6375.0s 547 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6375.0s 548 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+6495.0s 549 
+6495.0s 550 --- [Thời gian đã chạy: 108.0 phút] ---
+6495.0s 551 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6495.0s 552 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+6495.0s 553 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6495.0s 554 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6495.0s 555 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6495.0s 556 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+6495.0s 557 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6495.0s 558 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+6615.0s 559 
+6615.0s 560 --- [Thời gian đã chạy: 110.0 phút] ---
+6615.0s 561 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6615.0s 562 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9553 | BENIGN: 0.9725 | JAILBREAK: 0.9563 | PROMPT_INJECTION: 0.9372
+6615.0s 563 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6615.0s 564 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6615.0s 565 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6615.0s 566 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6615.0s 567 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+6615.0s 568 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9692 | BENIGN: 0.9810 | JAILBREAK: 0.9706 | PROMPT_INJECTION: 0.9561
+6735.0s 569 
+6735.0s 570 --- [Thời gian đã chạy: 112.0 phút] ---
+6735.0s 571 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6735.0s 572 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6735.0s 573 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6735.0s 574 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9610 | BENIGN: 0.9758 | JAILBREAK: 0.9599 | PROMPT_INJECTION: 0.9474
+6735.0s 575 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6735.0s 576 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6735.0s 577 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+6735.0s 578 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9692 | BENIGN: 0.9810 | JAILBREAK: 0.9706 | PROMPT_INJECTION: 0.9561
+6855.0s 579 
+6855.0s 580 --- [Thời gian đã chạy: 114.0 phút] ---
+6855.0s 581 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6855.0s 582 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6855.0s 583 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6855.0s 584 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9610 | BENIGN: 0.9758 | JAILBREAK: 0.9599 | PROMPT_INJECTION: 0.9474
+6855.0s 585 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6855.0s 586 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+6855.0s 587 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+6855.0s 588 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9692 | BENIGN: 0.9810 | JAILBREAK: 0.9706 | PROMPT_INJECTION: 0.9561
+6975.1s 589 
+6975.1s 590 --- [Thời gian đã chạy: 116.0 phút] ---
+6975.1s 591 > Process 0 (PID 45) - Trạng thái: Đang chạy
+6975.1s 592 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9590 | BENIGN: 0.9751 | JAILBREAK: 0.9606 | PROMPT_INJECTION: 0.9415
+6975.1s 593 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9619 | BENIGN: 0.9763 | JAILBREAK: 0.9628 | PROMPT_INJECTION: 0.9466
+6975.1s 594 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9610 | BENIGN: 0.9758 | JAILBREAK: 0.9599 | PROMPT_INJECTION: 0.9474
+6975.1s 595 > Process 1 (PID 46) - Trạng thái: Đang chạy
+6975.1s 596 [Eval Ep 4 Step 1400/1400] Val Macro-F1: 0.9694 | BENIGN: 0.9827 | JAILBREAK: 0.9742 | PROMPT_INJECTION: 0.9514
+6975.1s 597 [*] Đang tải checkpoint tốt nhất (epoch_4_step_1400, Macro-F1: 0.9694) từ /tmp/best_fold3.pt...
+6975.1s 598 [*] Đang sinh OOF probabilities cho Fold 3...
+7095.0s 599 
+7095.0s 600 --- [Thời gian đã chạy: 118.0 phút] ---
+7095.0s 601 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7095.0s 602 [*] Đang tải checkpoint tốt nhất (epoch_3_step_1400, Macro-F1: 0.9619) từ /tmp/best_fold2.pt...
+7095.0s 603 [*] Đang sinh OOF probabilities cho Fold 2...
+7095.0s 604 [*] Đang sinh Test probabilities cho Fold 2...
+7095.0s 605 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7095.0s 606 [*] Đang sinh OOF probabilities cho Fold 3...
+7095.0s 607 [*] Đang sinh Test probabilities cho Fold 3...
+7095.0s 608 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7215.1s 609 
+7215.1s 610 --- [Thời gian đã chạy: 120.0 phút] ---
+7215.1s 611 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7215.1s 612 Notes:
+7215.1s 613 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7215.1s 614 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7215.1s 615 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7215.1s 616 [*] Đang sinh OOF probabilities cho Fold 3...
+7215.1s 617 [*] Đang sinh Test probabilities cho Fold 3...
+7215.1s 618 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7335.1s 619 
+7335.1s 620 --- [Thời gian đã chạy: 122.0 phút] ---
+7335.1s 621 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7335.1s 622 Notes:
+7335.1s 623 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7335.1s 624 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7335.1s 625 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7335.1s 626 [*] Đang sinh OOF probabilities cho Fold 3...
+7335.1s 627 [*] Đang sinh Test probabilities cho Fold 3...
+7335.1s 628 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7455.1s 629 
+7455.1s 630 --- [Thời gian đã chạy: 124.0 phút] ---
+7455.1s 631 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7455.1s 632 Notes:
+7455.1s 633 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7455.1s 634 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7455.1s 635 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7455.1s 636 [*] Đang sinh OOF probabilities cho Fold 3...
+7455.1s 637 [*] Đang sinh Test probabilities cho Fold 3...
+7455.1s 638 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7575.1s 639 
+7575.1s 640 --- [Thời gian đã chạy: 126.0 phút] ---
+7575.1s 641 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7575.1s 642 Notes:
+7575.1s 643 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7575.1s 644 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7575.1s 645 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7575.1s 646 [*] Đang sinh OOF probabilities cho Fold 3...
+7575.1s 647 [*] Đang sinh Test probabilities cho Fold 3...
+7575.1s 648 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7695.1s 649 
+7695.1s 650 --- [Thời gian đã chạy: 128.0 phút] ---
+7695.1s 651 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7695.1s 652 Notes:
+7695.1s 653 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7695.1s 654 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7695.1s 655 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7695.1s 656 [*] Đang sinh OOF probabilities cho Fold 3...
+7695.1s 657 [*] Đang sinh Test probabilities cho Fold 3...
+7695.1s 658 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7815.1s 659 
+7815.1s 660 --- [Thời gian đã chạy: 130.0 phút] ---
+7815.1s 661 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7815.1s 662 Notes:
+7815.1s 663 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7815.1s 664 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7815.1s 665 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7815.1s 666 [*] Đang sinh OOF probabilities cho Fold 3...
+7815.1s 667 [*] Đang sinh Test probabilities cho Fold 3...
+7815.1s 668 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+7935.1s 669 
+7935.1s 670 --- [Thời gian đã chạy: 132.0 phút] ---
+7935.1s 671 > Process 0 (PID 45) - Trạng thái: Đang chạy
+7935.1s 672 Notes:
+7935.1s 673 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+7935.1s 674 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+7935.1s 675 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+7935.1s 676 [*] Đang sinh OOF probabilities cho Fold 3...
+7935.1s 677 [*] Đang sinh Test probabilities cho Fold 3...
+7935.1s 678 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8055.1s 679 
+8055.1s 680 --- [Thời gian đã chạy: 134.0 phút] ---
+8055.1s 681 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8055.1s 682 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+8055.1s 683 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8055.1s 684 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8055.1s 685 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8055.1s 686 [*] Đang sinh OOF probabilities cho Fold 3...
+8055.1s 687 [*] Đang sinh Test probabilities cho Fold 3...
+8055.1s 688 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8175.1s 689 
+8175.1s 690 --- [Thời gian đã chạy: 136.0 phút] ---
+8175.1s 691 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8175.1s 692 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+8175.1s 693 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8175.1s 694 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8175.1s 695 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8175.1s 696 [*] Đang sinh OOF probabilities cho Fold 3...
+8175.1s 697 [*] Đang sinh Test probabilities cho Fold 3...
+8175.1s 698 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8295.1s 699 
+8295.1s 700 --- [Thời gian đã chạy: 138.0 phút] ---
+8295.1s 701 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8295.1s 702 - MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+8295.1s 703 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8295.1s 704 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8295.1s 705 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8295.1s 706 [*] Đang sinh OOF probabilities cho Fold 3...
+8295.1s 707 [*] Đang sinh Test probabilities cho Fold 3...
+8295.1s 708 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8415.1s 709 
+8415.1s 710 --- [Thời gian đã chạy: 140.0 phút] ---
+8415.1s 711 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8415.1s 712 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8415.1s 713 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8415.1s 714 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+8415.1s 715 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8415.1s 716 [*] Đang sinh OOF probabilities cho Fold 3...
+8415.1s 717 [*] Đang sinh Test probabilities cho Fold 3...
+8415.1s 718 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8535.1s 719 
+8535.1s 720 --- [Thời gian đã chạy: 142.0 phút] ---
+8535.1s 721 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8535.1s 722 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8535.1s 723 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8535.1s 724 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+8535.1s 725 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8535.1s 726 [*] Đang sinh OOF probabilities cho Fold 3...
+8535.1s 727 [*] Đang sinh Test probabilities cho Fold 3...
+8535.1s 728 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8655.1s 729 
+8655.1s 730 --- [Thời gian đã chạy: 144.0 phút] ---
+8655.1s 731 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8655.1s 732 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8655.1s 733 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8655.1s 734 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+8655.1s 735 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8655.1s 736 [*] Đang sinh OOF probabilities cho Fold 3...
+8655.1s 737 [*] Đang sinh Test probabilities cho Fold 3...
+8655.1s 738 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8775.1s 739 
+8775.1s 740 --- [Thời gian đã chạy: 146.0 phút] ---
+8775.1s 741 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8775.1s 742 [*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+8775.1s 743 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8775.1s 744 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+8775.1s 745 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8775.1s 746 [*] Đang sinh OOF probabilities cho Fold 3...
+8775.1s 747 [*] Đang sinh Test probabilities cho Fold 3...
+8775.1s 748 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+8895.1s 749 
+8895.1s 750 --- [Thời gian đã chạy: 148.0 phút] ---
+8895.1s 751 > Process 0 (PID 45) - Trạng thái: Đang chạy
+8895.1s 752 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+8895.1s 753 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+8895.1s 754 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+8895.1s 755 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+8895.1s 756 [*] Đang sinh OOF probabilities cho Fold 3...
+8895.1s 757 [*] Đang sinh Test probabilities cho Fold 3...
+8895.1s 758 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9015.1s 759 
+9015.1s 760 --- [Thời gian đã chạy: 150.0 phút] ---
+9015.1s 761 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9015.1s 762 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+9015.1s 763 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+9015.1s 764 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9015.1s 765 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9015.1s 766 [*] Đang sinh OOF probabilities cho Fold 3...
+9015.1s 767 [*] Đang sinh Test probabilities cho Fold 3...
+9015.1s 768 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9135.1s 769 
+9135.1s 770 --- [Thời gian đã chạy: 152.0 phút] ---
+9135.1s 771 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9135.1s 772 [Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9151 | BENIGN: 0.9534 | JAILBREAK: 0.9363 | PROMPT_INJECTION: 0.8555
+9135.1s 773 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+9135.1s 774 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9135.1s 775 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9135.1s 776 [*] Đang sinh OOF probabilities cho Fold 3...
+9135.1s 777 [*] Đang sinh Test probabilities cho Fold 3...
+9135.1s 778 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9255.1s 779 
+9255.1s 780 --- [Thời gian đã chạy: 154.0 phút] ---
+9255.1s 781 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9255.1s 782 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+9255.1s 783 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9255.1s 784 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9255.1s 785 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9255.1s 786 [*] Đang sinh OOF probabilities cho Fold 3...
+9255.1s 787 [*] Đang sinh Test probabilities cho Fold 3...
+9255.1s 788 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9375.1s 789 
+9375.1s 790 --- [Thời gian đã chạy: 156.0 phút] ---
+9375.1s 791 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9375.1s 792 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+9375.1s 793 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9375.1s 794 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9375.1s 795 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9375.1s 796 [*] Đang sinh OOF probabilities cho Fold 3...
+9375.1s 797 [*] Đang sinh Test probabilities cho Fold 3...
+9375.1s 798 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9495.2s 799 
+9495.2s 800 --- [Thời gian đã chạy: 158.0 phút] ---
+9495.2s 801 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9495.2s 802 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+9495.2s 803 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9495.2s 804 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9495.2s 805 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9495.2s 806 [*] Đang sinh OOF probabilities cho Fold 3...
+9495.2s 807 [*] Đang sinh Test probabilities cho Fold 3...
+9495.2s 808 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9615.1s 809 
+9615.1s 810 --- [Thời gian đã chạy: 160.0 phút] ---
+9615.1s 811 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9615.1s 812 [Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9438 | BENIGN: 0.9663 | JAILBREAK: 0.9447 | PROMPT_INJECTION: 0.9204
+9615.1s 813 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9615.1s 814 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9615.2s 815 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9615.2s 816 [*] Đang sinh OOF probabilities cho Fold 3...
+9615.2s 817 [*] Đang sinh Test probabilities cho Fold 3...
+9615.2s 818 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9735.2s 819 
+9735.2s 820 --- [Thời gian đã chạy: 162.0 phút] ---
+9735.2s 821 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9735.2s 822 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9735.2s 823 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9735.2s 824 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+9735.2s 825 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9735.2s 826 [*] Đang sinh OOF probabilities cho Fold 3...
+9735.2s 827 [*] Đang sinh Test probabilities cho Fold 3...
+9735.2s 828 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9855.2s 829 
+9855.2s 830 --- [Thời gian đã chạy: 164.0 phút] ---
+9855.2s 831 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9855.2s 832 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9855.2s 833 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9855.2s 834 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+9855.2s 835 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9855.2s 836 [*] Đang sinh OOF probabilities cho Fold 3...
+9855.2s 837 [*] Đang sinh Test probabilities cho Fold 3...
+9855.2s 838 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+9975.2s 839 
+9975.2s 840 --- [Thời gian đã chạy: 166.0 phút] ---
+9975.2s 841 > Process 0 (PID 45) - Trạng thái: Đang chạy
+9975.2s 842 [Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9511 | BENIGN: 0.9709 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9242
+9975.2s 843 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+9975.2s 844 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+9975.2s 845 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+9975.2s 846 [*] Đang sinh OOF probabilities cho Fold 3...
+9975.2s 847 [*] Đang sinh Test probabilities cho Fold 3...
+9975.2s 848 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+10095.2s 849 
+10095.2s 850 --- [Thời gian đã chạy: 168.0 phút] ---
+10095.2s 851 > Process 0 (PID 45) - Trạng thái: Đang chạy
+10095.2s 852 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+10095.2s 853 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+10095.2s 854 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9676 | BENIGN: 0.9784 | JAILBREAK: 0.9648 | PROMPT_INJECTION: 0.9596
+10095.2s 855 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+10095.2s 856 [*] Đang sinh OOF probabilities cho Fold 3...
+10095.2s 857 [*] Đang sinh Test probabilities cho Fold 3...
+10095.2s 858 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+10215.2s 859 
+10215.2s 860 --- [Thời gian đã chạy: 170.0 phút] ---
+10215.2s 861 > Process 0 (PID 45) - Trạng thái: Đang chạy
+10215.2s 862 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+10215.2s 863 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+10215.2s 864 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9676 | BENIGN: 0.9784 | JAILBREAK: 0.9648 | PROMPT_INJECTION: 0.9596
+10215.2s 865 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+10215.2s 866 [*] Đang sinh OOF probabilities cho Fold 3...
+10215.2s 867 [*] Đang sinh Test probabilities cho Fold 3...
+10215.2s 868 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+10335.2s 869 
+10335.2s 870 --- [Thời gian đã chạy: 172.0 phút] ---
+10335.2s 871 > Process 0 (PID 45) - Trạng thái: Đang chạy
+10335.2s 872 [Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9565 | BENIGN: 0.9745 | JAILBREAK: 0.9630 | PROMPT_INJECTION: 0.9320
+10335.2s 873 [Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9700 | BENIGN: 0.9806 | JAILBREAK: 0.9697 | PROMPT_INJECTION: 0.9596
+10335.2s 874 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9676 | BENIGN: 0.9784 | JAILBREAK: 0.9648 | PROMPT_INJECTION: 0.9596
+10335.2s 875 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+10335.2s 876 [*] Đang sinh OOF probabilities cho Fold 3...
+10335.2s 877 [*] Đang sinh Test probabilities cho Fold 3...
+10335.2s 878 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+10455.2s 879 
+10455.2s 880 --- [Thời gian đã chạy: 174.0 phút] ---
+10455.2s 881 > Process 0 (PID 45) - Trạng thái: Đang chạy
+10455.2s 882 [Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9676 | BENIGN: 0.9784 | JAILBREAK: 0.9648 | PROMPT_INJECTION: 0.9596
+10455.2s 883 [Eval Ep 4 Step 1400/1400] Val Macro-F1: 0.9679 | BENIGN: 0.9787 | JAILBREAK: 0.9654 | PROMPT_INJECTION: 0.9596
+10455.2s 884 [*] Đang tải checkpoint tốt nhất (epoch_3_step_1400, Macro-F1: 0.9700) từ /tmp/best_fold4.pt...
+10455.2s 885 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+10455.2s 886 [*] Đang sinh OOF probabilities cho Fold 3...
+10455.2s 887 [*] Đang sinh Test probabilities cho Fold 3...
+10455.2s 888 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+10575.2s 889 
+10575.2s 890 --- [Thời gian đã chạy: 176.0 phút] ---
+10575.2s 891 > Process 0 (PID 45) - Trạng thái: Hoàn thành (mã 0)
+10575.2s 892 [*] Đang sinh OOF probabilities cho Fold 4...
+10575.2s 893 [*] Đang sinh Test probabilities cho Fold 4...
+10575.2s 894 [HOÀN THÀNH FOLD 4] Best F1: 0.9700 | Thời gian: 56.9 phút | VRAM: 10.75 GB
+10575.2s 895 > Process 1 (PID 46) - Trạng thái: Hoàn thành (mã 0)
+10575.2s 896 [*] Đang sinh OOF probabilities cho Fold 3...
+10575.2s 897 [*] Đang sinh Test probabilities cho Fold 3...
+10575.2s 898 [HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB
+10575.2s 899 
+10575.2s 900 [+] TẤT CẢ CÁC FOLD ĐÃ HUẤN LUYỆN XONG HOÀN HẢO!
+10576.8s 901 [*] Đã ghép hoàn chỉnh OOF cho toàn bộ 14,000 mẫu.
+10576.8s 902 [*] Đang tối ưu hóa Global Class Multipliers trên ma trận OOF 14,000 dòng...
+10579.0s 903 [+] Global OOF Macro-F1 (Base -> Global Multipliers): 0.9658 -> 0.9664
+10579.0s 904 [*] SUBMIT_MODE = 'fold_avg': Tính trung bình xác suất của 5 checkpoint RemBERT...
+10579.0s 905 
+10579.0s 906 [*] Đang tối ưu hóa Per-Language Multipliers riêng cho từng ngôn ngữ (pt, fr, it, en)...
+10580.6s 907 [+] Lang pt: Multipliers [1.0, 1.0, 0.9] | F1: 0.9624 -> 0.9627
+10582.2s 908 [+] Lang fr: Multipliers [1.0, 0.5, 0.8] | F1: 0.9748 -> 0.9758
+10583.6s 909 [+] Lang it: Multipliers [1.0, 1.3, 0.3] | F1: 0.9669 -> 0.9723
+10585.0s 910 [+] Lang en: Multipliers [1.0, 1.3, 0.6] | F1: 0.9572 -> 0.9588
+10585.0s 911 
+10585.0s 912 [+] Tổng hợp 14,000 OOF Macro-F1 (Base):                 0.9658
+10585.0s 913 [+] Tổng hợp 14,000 OOF Macro-F1 (Global Multipliers):   0.9664
+10585.0s 914 [+] Tổng hợp 14,000 OOF Macro-F1 (Per-Lang Multipliers): 0.9676 (+0.0017)
+10585.0s 915 - F1[BENIGN]: 0.9786 -> 0.9792
+10585.0s 916 - F1[JAILBREAK]: 0.9660 -> 0.9663
+10585.0s 917 - F1[PROMPT_INJECTION]: 0.9529 -> 0.9572
+10585.1s 918 [+] Đã lưu submission.csv (6,000 dòng) và metrics.json thành công!
+10585.1s 919 
+10585.1s 920 ============================================================
+10585.1s 921 📋 PHÂN PHỐI DỰ ĐOÁN TRÊN TẬP TEST (6,000 DÒNG):
+10585.1s 922 ============================================================
+10585.1s 923 - BENIGN            : 3,739 dòng (62.32%)
+10585.1s 924 - JAILBREAK         : 1,853 dòng (30.88%)
+10585.1s 925 - PROMPT_INJECTION  :   408 dòng ( 6.80%)
+10585.1s 926 
+10585.1s 927 [+] Tỷ lệ PROMPT_INJECTION (6.80%) hoàn toàn đạt chuẩn phân phối mục tiêu (~5%–10%).
+10585.1s 928 
+10585.1s 929 ============================================================
+10585.1s 930 🏆 KẾT QUẢ ĐỐI CHIẾU VỚI BASELINE (5-FOLD OOF MACRO-F1):
+10585.1s 931 ============================================================
+10585.1s 932 - Classical ML Baseline OOF Macro-F1:     0.9332
+10585.1s 933 - RemBERT 5-Fold OOF (Tuned Multipliers): 0.9676 (+0.0344)
+10585.1s 934 - Chi tiết theo ngôn ngữ: {'pt': 0.9627395076179729, 'fr': 0.9757600364141387, 'it': 0.9722825778588406, 'en': 0.958763452604086}
+10585.1s 935 ============================================================
+10585.1s 936 [+] KẾT QUẢ: RemBERT VƯỢT TRỘI BASELINE! Đủ điều kiện cạnh tranh vị trí Champion Model.
+10585.1s 937 
+10585.1s 938 [+] TOÀN BỘ CÁC BƯỚC SANITY CHECK ĐÃ HOÀN TẤT THÀNH CÔNG! SẴN SÀNG NỘP KAGGLE.
+10588.4s 939 /usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\|'
+10588.4s 940 cells[i][c] = re.sub('\\\\\|', '|', cell)
+10588.5s 941 /usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\_'
+10588.5s 942 text = re.sub(r'_', '\_', text) # Escape underscores in display text
+10589.8s 943 [NbConvertApp] Converting notebook __notebook__.ipynb to notebook
+10589.9s 944 [NbConvertApp] Writing 143181 bytes to __notebook__.ipynb
+10593.0s 945 [NbConvertApp] Converting notebook __notebook__.ipynb to html
+10593.7s 946 [NbConvertApp] Writing 581925 bytes to __results__.html

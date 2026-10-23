@@ -1,0 +1,59 @@
+[*] Thiết bị tính toán: cuda | CUDA_VISIBLE_DEVICES: 1
+[*] Đã xác định model RemBERT tại: /kaggle/input/models/aisuko/rembert/transformers/default/1
+[*] Đang khởi tạo tokenizer...
+[*] Đang đọc train.csv, test.csv và folds.csv...
+[*] Dữ liệu Train: 14,000 dòng | Test: 6,000 dòng | Folds: [0, 1, 2, 3, 4]
+[*] Chuẩn hóa văn bản và định dạng tiền tố 'lang: {language} | {clean_text}'...
+[*] Tokenize trước toàn bộ tập Train và Test (Head 254 + [SEP] + Tail 254)...
+
+======================================================================
+>>> [BẮT ĐẦU FOLD 1] 
+======================================================================
+[*] Đang tải backbone RemBERT từ: /kaggle/input/models/aisuko/rembert/transformers/default/1 (seed=43)
+Loading weights:   0%|          | 0/521 [00:00<?, ?it/s]Loading weights: 100%|██████████| 521/521 [00:00<00:00, 11856.16it/s]
+[transformers] [1mRemBertForSequenceClassification LOAD REPORT[0m from: /kaggle/input/models/aisuko/rembert/transformers/default/1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+[Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9096 | BENIGN: 0.9402 | JAILBREAK: 0.8925 | PROMPT_INJECTION: 0.8962
+[Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9408 | BENIGN: 0.9660 | JAILBREAK: 0.9458 | PROMPT_INJECTION: 0.9106
+[Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9315 | BENIGN: 0.9551 | JAILBREAK: 0.9228 | PROMPT_INJECTION: 0.9167
+[Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9615 | BENIGN: 0.9749 | JAILBREAK: 0.9566 | PROMPT_INJECTION: 0.9531
+[Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9593 | BENIGN: 0.9748 | JAILBREAK: 0.9591 | PROMPT_INJECTION: 0.9439
+[Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9587 | BENIGN: 0.9741 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9436
+[Eval Ep 4 Step 1400/1400] Val Macro-F1: 0.9605 | BENIGN: 0.9747 | JAILBREAK: 0.9585 | PROMPT_INJECTION: 0.9482
+[*] Đang tải checkpoint tốt nhất (epoch_3_step_700, Macro-F1: 0.9615) từ /tmp/best_fold1.pt...
+[*] Đang sinh OOF probabilities cho Fold 1...
+[*] Đang sinh Test probabilities cho Fold 1...
+[HOÀN THÀNH FOLD 1] Best F1: 0.9615 | Thời gian: 55.7 phút | VRAM: 10.71 GB
+
+======================================================================
+>>> [BẮT ĐẦU FOLD 3] 
+======================================================================
+[*] Đang tải backbone RemBERT từ: /kaggle/input/models/aisuko/rembert/transformers/default/1 (seed=45)
+Loading weights:   0%|          | 0/521 [00:00<?, ?it/s]Loading weights: 100%|██████████| 521/521 [00:00<00:00, 13121.13it/s]
+[transformers] [1mRemBertForSequenceClassification LOAD REPORT[0m from: /kaggle/input/models/aisuko/rembert/transformers/default/1
+Key               | Status  | 
+------------------+---------+-
+classifier.weight | MISSING | 
+classifier.bias   | MISSING | 
+
+Notes:
+- MISSING:	those params were newly initialized because missing from the checkpoint. Consider training on your downstream task.
+[*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+[Eval Ep 1 Step 1400/1400] Val Macro-F1: 0.9278 | BENIGN: 0.9646 | JAILBREAK: 0.9509 | PROMPT_INJECTION: 0.8679
+[Eval Ep 2 Step 700/1400] Val Macro-F1: 0.9535 | BENIGN: 0.9747 | JAILBREAK: 0.9647 | PROMPT_INJECTION: 0.9211
+[Eval Ep 2 Step 1400/1400] Val Macro-F1: 0.9586 | BENIGN: 0.9766 | JAILBREAK: 0.9663 | PROMPT_INJECTION: 0.9330
+[Eval Ep 3 Step 700/1400] Val Macro-F1: 0.9664 | BENIGN: 0.9796 | JAILBREAK: 0.9688 | PROMPT_INJECTION: 0.9509
+[Eval Ep 3 Step 1400/1400] Val Macro-F1: 0.9689 | BENIGN: 0.9808 | JAILBREAK: 0.9699 | PROMPT_INJECTION: 0.9561
+[Eval Ep 4 Step 700/1400] Val Macro-F1: 0.9692 | BENIGN: 0.9810 | JAILBREAK: 0.9706 | PROMPT_INJECTION: 0.9561
+[Eval Ep 4 Step 1400/1400] Val Macro-F1: 0.9694 | BENIGN: 0.9827 | JAILBREAK: 0.9742 | PROMPT_INJECTION: 0.9514
+[*] Đang tải checkpoint tốt nhất (epoch_4_step_1400, Macro-F1: 0.9694) từ /tmp/best_fold3.pt...
+[*] Đang sinh OOF probabilities cho Fold 3...
+[*] Đang sinh Test probabilities cho Fold 3...
+[HOÀN THÀNH FOLD 3] Best F1: 0.9694 | Thời gian: 55.9 phút | VRAM: 10.68 GB

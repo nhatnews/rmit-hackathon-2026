@@ -1,0 +1,39 @@
+{
+  "TEAM_NAME": "BakhiBachKhoa",
+  "MODEL_NAME": "google/rembert",
+  "VERSION_TAG": "V4",
+  "SMOKE_TEST": false,
+  "SUBMIT_MODE": "fold_avg",
+  "HEAD_TYPE": "hybrid_msd",
+  "BATCH_SIZE": 8,
+  "GRAD_ACCUM": 2,
+  "LR": 1.5e-05,
+  "LLRD": 0.965,
+  "EPOCHS": 4,
+  "WARMUP_RATIO": 0.1,
+  "WEIGHT_DECAY": 0.01,
+  "ADAM_EPS": 1e-06,
+  "MAX_LEN": 512,
+  "CLASS_WEIGHTS": [
+    1.0,
+    1.5,
+    5.0
+  ],
+  "LABEL_SMOOTHING": 0.03,
+  "TOP_K_CHECKPOINTS": 2,
+  "TOP1_WEIGHT": 0.55,
+  "SEED": 1337,
+  "GPU_FOLDS": {
+    "0": [
+      0,
+      2,
+      4
+    ],
+    "1": [
+      1,
+      3
+    ]
+  },
+  "OUT_DIR": "/kaggle/working",
+  "RESUME_DIR": null
+}

@@ -1,0 +1,17 @@
+
+======================================================================
+>>> [BẮT ĐẦU FOLD 0] Head=standard | Top-2 Snapshots 
+======================================================================
+[*] Đang tải backbone RemBERT từ: /kaggle/input/models/aisuko/rembert/transformers/default/1 (seed=2026, head=standard)
+[*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2800
+[Eval Ep 1 Step 1400/1400] Val Raw-F1: 0.9221 (CalScore: 0.9221) | BENIGN: 0.9578 | JAILBREAK: 0.9295 | PROMPT_INJECTION: 0.8792
+[Eval Ep 2 Step 700/1400] Val Raw-F1: 0.9389 (CalScore: 0.9398) | BENIGN: 0.9680 | JAILBREAK: 0.9500 | PROMPT_INJECTION: 0.8987
+[Eval Ep 2 Step 1400/1400] Val Raw-F1: 0.9582 (CalScore: 0.9590) | BENIGN: 0.9750 | JAILBREAK: 0.9580 | PROMPT_INJECTION: 0.9418
+[Eval Ep 3 Step 700/1400] Val Raw-F1: 0.9545 (CalScore: 0.9549) | BENIGN: 0.9765 | JAILBREAK: 0.9651 | PROMPT_INJECTION: 0.9219
+[Eval Ep 3 Step 1400/1400] Val Raw-F1: 0.9619 (CalScore: 0.9622) | BENIGN: 0.9801 | JAILBREAK: 0.9700 | PROMPT_INJECTION: 0.9357
+[Eval Ep 4 Step 700/1400] Val Raw-F1: 0.9627 (CalScore: 0.9632) | BENIGN: 0.9812 | JAILBREAK: 0.9712 | PROMPT_INJECTION: 0.9357
+[Eval Ep 4 Step 1400/1400] Val Raw-F1: 0.9627 (CalScore: 0.9632) | BENIGN: 0.9800 | JAILBREAK: 0.9695 | PROMPT_INJECTION: 0.9385
+[*] Đang tải Top-1 checkpoint (epoch_4_step_1400, Raw-F1: 0.9627, CalScore: 0.9632)...
+[*] Đang tải Top-2 checkpoint (epoch_4_step_700, Raw-F1: 0.9627, CalScore: 0.9632) để kết hợp Intra-Fold (0.55 * best1 + 0.45 * best2)...
+[+] Intra-Fold Top-2 Snapshot F1: 0.9631 (so với Top-1 đơn lẻ: 0.9627)
+[HOÀN THÀNH FOLD 0] Final Fold F1: 0.9631 (epoch_4_step_1400+epoch_4_step_700) | Thời gian: 63.0 phút | VRAM: 10.73 GB

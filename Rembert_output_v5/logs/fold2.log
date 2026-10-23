@@ -1,0 +1,9 @@
+
+======================================================================
+>>> [BẮT ĐẦU FOLD 2] Head=standard | Top-1 Snapshots 
+======================================================================
+[*] Đang tải backbone RemBERT từ: /kaggle/input/models/aisuko/rembert/transformers/default/1 (seed=2028, head=standard)
+[*] Tổng mẫu train: 11,200 | Val: 2,800 | Steps/epoch: 700 | Total opt steps: 2100
+[Eval Ep 3 Step 1400/1400] Val Raw-F1: 0.9639 (CalScore: 0.9642) | BENIGN: 0.9792 | JAILBREAK: 0.9676 | PROMPT_INJECTION: 0.9449
+[*] Đang tải Top-1 checkpoint (epoch_3_step_1400, Raw-F1: 0.9639, CalScore: 0.9642)...
+[HOÀN THÀNH FOLD 2] Final Fold F1: 0.9639 (epoch_3_step_1400) | Thời gian: 40.6 phút | VRAM: 10.68 GB
